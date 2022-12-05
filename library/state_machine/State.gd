@@ -9,6 +9,9 @@ var transitions = {}
 func enter():
 	pass
 
+func on_exit():
+	pass
+
 func exit(next_state):
 	if fsm:
 		fsm.change_to(next_state)

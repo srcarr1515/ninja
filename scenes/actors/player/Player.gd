@@ -5,6 +5,9 @@ onready var dash_cd := $DashCD ## Cooldown for Dash Attack
 onready var alt_attack_ct := $AltAttackCT ## Charge Time for Alt Attack
 onready var fsm := $StateMachine
 onready var anim_player := $AnimationPlayer
+onready var hitbox := $HitBox
+onready var detectbox := $DetectBox
+onready var hurtbox := $HurtBox
 
 var first_touch
 var target_position

@@ -23,6 +23,7 @@ func change_to(new_state):
 	if next_state != null:
 		if state == next_state:
 			return
+		state.call_deferred("on_exit")
 		next_state.fsm = self
 		next_state.this = this
 		if state != null:

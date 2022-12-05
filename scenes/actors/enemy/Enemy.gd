@@ -25,5 +25,3 @@ func _physics_process(delta):
 	var direction = global_position.direction_to(target_pos)
 	var velocity = direction * nav_agent.max_speed
 	move_and_slide(velocity)
-
-
