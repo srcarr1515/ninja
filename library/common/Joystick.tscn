@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://library/common/Joystick_Button.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/ui/big_circle.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ui/med_circle.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[node name="Joystick" type="Sprite"]
+position = Vector2( 2, -1 )
+texture = ExtResource( 2 )
+
+[node name="Joystick_Button" type="TouchScreenButton" parent="."]
+modulate = Color( 0.466667, 0.423529, 0.423529, 1 )
+position = Vector2( -18, -18 )
+normal = ExtResource( 3 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )

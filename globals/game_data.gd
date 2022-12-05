@@ -3,6 +3,7 @@ extends Node
 onready var graveyard = []
 var player_data = {}
 var player
+var joystick
 
 func destroy(_target):
 	graveyard.push_front(_target)
