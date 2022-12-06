@@ -498,6 +498,15 @@ position = Vector2( 328, 386 )
 [node name="Enemy" parent="Stage" instance=ExtResource( 9 )]
 position = Vector2( 307, 164 )
 
+[node name="Enemy2" parent="Stage" instance=ExtResource( 9 )]
+position = Vector2( 407, 163 )
+
+[node name="Enemy3" parent="Stage" instance=ExtResource( 9 )]
+position = Vector2( 355, 124 )
+
+[node name="Enemy4" parent="Stage" instance=ExtResource( 9 )]
+position = Vector2( 357, 194 )
+
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 362, 739 )
 current = true

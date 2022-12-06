@@ -27,6 +27,7 @@ height = 12.0
 radius = 6.0
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 3
 script = ExtResource( 5 )
 
 [node name="DetectBox" parent="." instance=ExtResource( 2 )]
@@ -43,7 +44,7 @@ visible = false
 collision_layer = 0
 collision_mask = 4
 
-[node name="Shape" parent="HitBox/Area" index="0"]
+[node name="Shape" parent="HitBox/Area" index="0" groups=["player"]]
 position = Vector2( 0, -11 )
 shape = SubResource( 3 )
 disabled = true
@@ -90,6 +91,8 @@ one_shot = true
 [node name="Walk" parent="StateMachine" instance=ExtResource( 10 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="is_dead" from="HurtBox" to="." method="_on_HurtBox_is_dead"]
 
 [editable path="DetectBox"]
 [editable path="HitBox"]

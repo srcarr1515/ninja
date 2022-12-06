@@ -88,3 +88,7 @@ func _physics_process(delta):
 			fsm.change_to("Idle")
 	elif in_touch && !target_position:
 		input_dir = GameData.joystick.get_node("Joystick_Button").get_value()
+
+
+func _on_HurtBox_is_dead():
+	OS.alert('You Died!')
