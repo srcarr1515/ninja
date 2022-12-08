@@ -4,6 +4,7 @@ onready var graveyard = []
 var player_data = {}
 var player
 var joystick
+var hp_label
 
 func destroy(_target):
 	graveyard.push_front(_target)

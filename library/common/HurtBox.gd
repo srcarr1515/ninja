@@ -14,7 +14,6 @@ func get_hurt(amount):
 	if hp < 1:
 		hp = 0
 		emit_signal("is_dead")
-	print(get_parent().name, ":", hp)
 	return hp
 
 

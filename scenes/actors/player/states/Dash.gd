@@ -5,5 +5,6 @@ func enter():
 	this.hitbox.get_node("Area/Shape").set_disabled(false)
 
 func on_exit():
-	this.hurtbox.get_node("Area/Shape").set_disabled(false)
+	yield(get_tree().create_timer(0.05), "timeout")
 	this.hitbox.get_node("Area/Shape").set_disabled(true)
+	this.hurtbox.get_node("Area/Shape").set_disabled(false)

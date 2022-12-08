@@ -20,75 +20,57 @@ export var walk_speed = 150
 export var friction:= 0.01
 export var acceleration:= 0.1
 
-var new_angle
-var in_touch = false
 var input_dir
-var is_dragging = false
+var touch_distance
+var is_swipe = false
+var is_in_touch = false
 
 func _input(event):
-	is_dragging = event is InputEventScreenDrag
+	if event is InputEventScreenDrag:
+		if "position" in event && first_touch:
+			touch_distance = event.position.distance_to(first_touch)
+			var alpha = clamp(((tap_timer.wait_time - tap_timer.time_left)/tap_timer.wait_time)/2, 0, 0.5)
+			if alpha > 0.25:
+				GameData.joystick.set_modulate(Color(1,1,1,alpha - 0.1))
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
-			GameData.joystick.visible = false
-			in_touch = true
-			first_touch = event.position
-			GameData.joystick.position = event.position
+			is_in_touch = true
+			is_swipe = false
 			tap_timer.start()
-			alt_attack_ct.start()
+			GameData.joystick.visible = true
+			GameData.joystick.set_modulate(Color(1,1,1,0))
+			GameData.joystick.position = event.position
+			first_touch = event.position
 		elif !event.is_pressed():
-			if abs(event.position.distance_to(first_touch)) <= 50 && !tap_timer.is_stopped():
-				speed = walk_speed
-				first_touch = null
-				target_position = get_canvas_transform().xform_inv(event.position)
-				fsm.change_to('Walk')
-			elif !GameData.joystick.visible && dash_cd.is_stopped():
-				dash_cd.start()
-				speed = dash_speed
-				new_angle = event.position.angle_to_point(first_touch)
-				target_position = get_end_pos_from_start_pos_and_angle(position, new_angle, 96)
-				fsm.change_to('Dash')
-			in_touch = false
+			is_swipe = !tap_timer.is_stopped()
 			GameData.joystick.visible = false
-
-func _process(delta):
-	if in_touch && alt_attack_ct.is_stopped() && !is_dragging:
-		GameData.joystick.visible = true
-
-func get_end_pos_from_start_pos_and_angle(start_pos, angle, distance):
-	var x = start_pos.x + (distance * cos(angle))
-	var y = start_pos.y + (distance * sin(angle))
-	return Vector2(x, y)
-
-func get_collision_side(collision_pos):
-	var x = collision_pos.x - position.x
-	var y = collision_pos.y - position.y
-	var side
-	if abs(x) > 1:
-		## LEFT/RIGHT
-		if x > 0:
-			side = "RIGHT"
-		else:
-			side = "LEFT"
-	else:
-		## UP/DOWN
-		if y > 0:
-			side = "DOWN"
-		else:
-			side = "UP"
-	return side
+			is_in_touch = false
 
 func _physics_process(delta):
-	if target_position:
-		velocity = position.direction_to(target_position) * speed
-		move_direction = rad2deg(target_position.angle_to_point(position))
-		if position.distance_to(target_position) >= 5:
-			velocity = move_and_slide(velocity)
+	if fsm.state.name == "Dead":
+		return
+	input_dir = GameData.joystick.get_node("Joystick_Button").get_value()
+	var move_speed = 1
+	if touch_distance:
+		move_speed = clamp((touch_distance/200) * 10, 1, 12)
+	if input_dir:
+		if is_swipe:
+			velocity = position.direction_to(position + input_dir) * 15
+			var collision = move_and_collide(velocity)
+			fsm.change_to("Dash")
 		else:
-			velocity = Vector2.ZERO
-			fsm.change_to("Idle")
-	elif in_touch && !target_position:
-		input_dir = GameData.joystick.get_node("Joystick_Button").get_value()
-
+			move_speed = clamp(move_speed, 1, 3)
+			velocity = position.direction_to(position + input_dir) * (move_speed * 50)
+			fsm.change_to("Walk")
+			move_and_slide(velocity)
+	else:
+		fsm.change_to("Idle")
 
 func _on_HurtBox_is_dead():
-	OS.alert('You Died!')
+	fsm.change_to("Dead")
+
+func _on_HurtBox_took_damage(amount):
+	GameData.hp_label.text = "HP: {hp}".format({"hp": hurtbox.hp})
+
+func _on_TapTimer_timeout():
+	pass
