@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://states/game/GameState.gd" type="Script" id=1]
 [ext_resource path="res://states/game/MainMenu.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Game.gd" type="Script" id=6]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MainCamera.gd" type="Script" id=8]
+[ext_resource path="res://scenes/actors/enemy/Bat.tscn" type="PackedScene" id=9]
 [ext_resource path="res://library/common/Joystick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Stage.gd" type="Script" id=11]
 
@@ -34,8 +35,14 @@ __meta__ = {
 
 [node name="Level" parent="Stage" instance=ExtResource( 7 )]
 
-[node name="Player" parent="Stage/Level/map" index="1" instance=ExtResource( 5 )]
-position = Vector2( 124, 299 )
+[node name="Bat" parent="Stage/Level/map" index="1" instance=ExtResource( 9 )]
+position = Vector2( 221, 216 )
+
+[node name="Bat2" parent="Stage/Level/map" index="2" instance=ExtResource( 9 )]
+position = Vector2( 221, 216 )
+
+[node name="Player" parent="Stage/Level/map" index="3" instance=ExtResource( 5 )]
+position = Vector2( 111, 376 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 362, 739 )

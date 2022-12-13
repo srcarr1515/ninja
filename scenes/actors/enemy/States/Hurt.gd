@@ -7,4 +7,4 @@ func enter():
 	this.hitbox.set_disabled(true)
 	yield(get_tree().create_timer(recovery_time), "timeout")
 	this.hitbox.get_node("Area/Shape").set_disabled(false)
-	exit(fsm.history.front())
+	exit("Chase")

@@ -46,22 +46,35 @@ func _input(event):
 			first_touch = event.position
 		elif !event.is_pressed():
 			if !touch_distance || touch_distance < 5:
-				alt_attack(get_canvas_transform().xform_inv(event.position))
+				alt_attack(get_canvas_transform().affine_inverse().xform(event.position))
 			is_swipe = !tap_timer.is_stopped()
 			GameData.joystick.visible = false
 			is_in_touch = false
+
+func nearest_active_enemy():
+	var targets = get_tree().get_nodes_in_group("enemies")
+	var nearest_target = targets.front()
+	if nearest_target:
+		for t in targets:
+			if t.fsm.state.name == "Dead":
+				continue
+			if t.global_position.distance_to(global_position) < nearest_target.global_position.distance_to(global_position):
+				nearest_target = t
+	if nearest_target && nearest_target.fsm.state.name == "Dead":
+		return null
+	return nearest_target
 
 func alt_attack(target_position):
 	if alt_attack_cd.is_stopped():
 		var alt_atk_instance = alt_atk.instance()
 		alt_atk_instance.global_position = global_position
-		var enemy = Helpers.pick_nearest("enemies", global_position)
-		if enemy:
-			target_position = enemy.global_position
-		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
-		alt_atk_instance.direction = direction_toward_enemy
+#		var enemy = nearest_active_enemy()
+#		if enemy:
+#			target_position = enemy.global_position
 		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
 			get_tree().get_root().add_child(alt_atk_instance)
+			var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
+			alt_atk_instance.direction = direction_toward_enemy
 			alt_attack_cd.start()
 
 func _physics_process(delta):

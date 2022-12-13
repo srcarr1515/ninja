@@ -12,20 +12,31 @@ onready var attention_timer = $AttentionTimer
 onready var tween := $Tween
 onready var anim_player = $AnimationPlayer
 onready var v_notifier = $VisibilityNotifier2D
+onready var soft_collision = $SoftCollision
 
 var los_instance
 var map_level
+var velocity = Vector2.ZERO
 
 export var line_of_sight_range := 120
 var target
 
 func _ready():
 	nav_agent.connect("velocity_computed", self, "_on_velocity_computed")
+	fsm.this = self
 	if anim_player.has_animation(fsm.state.name):
 		anim_player.play(fsm.state.name)
 	
 func _on_velocity_computed(velocity):
 	pass
+
+func _physics_process(delta):
+	if fsm.state.name != "Dead":
+		if soft_collision.is_colliding():
+			velocity += soft_collision.get_push_vector() * delta * 100
+		else:
+			velocity = Vector2.ZERO
+		velocity = move_and_slide(velocity)
 
 func look_for_player():
 	if GameData.player:
@@ -35,7 +46,6 @@ func look_for_player():
 		if los.is_colliding():
 			if los.get_collider().is_in_group("player"):
 				target = los.get_collider()
-				print("Chasing?")
 				fsm.change_to("Chase")
 				attention_timer.start()
 

@@ -9,7 +9,7 @@ signal took_damage(amount)
 signal is_dead
 
 func set_disabled(is_disabled:bool):
-	get_node("Area/Shape").call_deferred("set_disabled", true)
+	get_node("Area/Shape").call_deferred("set_disabled", is_disabled)
 
 func get_hurt(amount):
 	hp -= amount

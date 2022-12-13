@@ -66,10 +66,11 @@ tracks/1/keys = {
 radius = 4.12311
 
 [node name="Shuriken" instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
 collision_layer = 0
 collision_mask = 4
 autoplay = "spin"
-speed = 100
+speed = 150
 
 [node name="CollisionShape2D" parent="." index="0"]
 visible = false

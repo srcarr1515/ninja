@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/actors/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actors/enemy/States/EnemyStateMachine.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/actors/player/states/Hurt.tscn" type="PackedScene" id=11]
 [ext_resource path="res://library/shaders/colorize.tres" type="Shader" id=12]
 [ext_resource path="res://scenes/actors/enemy/States/Dead.tscn" type="PackedScene" id=13]
+[ext_resource path="res://library/common/SoftCollision.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -125,6 +126,8 @@ radius = 10.0499
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.94427
 
+[sub_resource type="CircleShape2D" id=10]
+
 [node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 0
@@ -193,6 +196,11 @@ enabled = true
 cast_to = Vector2( 150, 0 )
 collision_mask = 2
 
+[node name="SoftCollision" parent="." instance=ExtResource( 14 )]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource( 10 )
+
 [node name="StateMachine" parent="." instance=ExtResource( 2 )]
 
 [node name="Idle" parent="StateMachine" instance=ExtResource( 4 )]
@@ -217,3 +225,4 @@ collision_mask = 2
 [editable path="HitBox"]
 [editable path="DetectBox"]
 [editable path="HurtBox"]
+[editable path="SoftCollision"]

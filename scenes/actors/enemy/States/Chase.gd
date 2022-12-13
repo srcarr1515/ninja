@@ -1,7 +1,8 @@
 extends State
 
 func enter():
-	pass
+	this.hurtbox.set_disabled(false)
+	this.hitbox.set_disabled(true)
 
 func physics_process(delta):
 	this.look_for_player()

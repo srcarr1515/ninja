@@ -142,8 +142,20 @@ texture = ExtResource( 2 )
 hframes = 15
 vframes = 7
 
+[node name="HitBox" parent="." index="6"]
+visible = false
+
+[node name="HurtBox" parent="." index="8"]
+visible = true
+max_hp = 5
+
+[node name="SoftCollision" parent="." index="12"]
+collision_layer = 16
+collision_mask = 16
+
 [connection signal="on_change_state" from="StateMachine" to="." method="_on_StateMachine_on_change_state"]
 
 [editable path="HitBox"]
 [editable path="DetectBox"]
 [editable path="HurtBox"]
+[editable path="SoftCollision"]
