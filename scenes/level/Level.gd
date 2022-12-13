@@ -10,7 +10,8 @@ func _ready():
 		if tilemap.name == "floor":
 			tilemap.set_bake_navigation(true)
 		elif tilemap is TileMap:
-			tilemap.set_tile_origin(1) ## Center
+			pass
+#			tilemap.set_tile_origin(1) ## Center
 	spawn_points = get_spawn_points()
 
 func get_spawn_points():

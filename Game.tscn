@@ -35,13 +35,10 @@ __meta__ = {
 
 [node name="Level" parent="Stage" instance=ExtResource( 7 )]
 
-[node name="Bat" parent="Stage/Level/map" index="1" instance=ExtResource( 9 )]
+[node name="Bat2" parent="Stage/Level/map" index="1" instance=ExtResource( 9 )]
 position = Vector2( 221, 216 )
 
-[node name="Bat2" parent="Stage/Level/map" index="2" instance=ExtResource( 9 )]
-position = Vector2( 221, 216 )
-
-[node name="Player" parent="Stage/Level/map" index="3" instance=ExtResource( 5 )]
+[node name="Player" parent="Stage/Level/map" index="2" instance=ExtResource( 5 )]
 position = Vector2( 111, 376 )
 
 [node name="MainCamera" type="Camera2D" parent="."]

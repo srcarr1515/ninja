@@ -13,6 +13,7 @@ onready var tween := $Tween
 onready var anim_player = $AnimationPlayer
 onready var v_notifier = $VisibilityNotifier2D
 onready var soft_collision = $SoftCollision
+onready var health_bar = $HealthBar
 
 var los_instance
 var map_level
@@ -68,6 +69,9 @@ func _on_HurtBox_took_damage(amount):
 		return
 	target = get_tree().get_nodes_in_group("player")[0]
 	if hurtbox.hp > 0:
+		var perc_hp = (float(hurtbox.hp)/float(hurtbox.max_hp)) * 100
+		print(perc_hp)
+		health_bar.set_health_bar(perc_hp)
 		fsm.change_to("Hurt")
 	else:
 		fsm.change_to("Dead")

@@ -7,8 +7,5 @@
 [node name="floor" parent="." index="0"]
 cell_y_sort = false
 
-[node name="wall-1" parent="." index="1"]
-cell_tile_origin = 1
-
 [node name="wall-top" parent="." index="2"]
 cell_tile_origin = 1
