@@ -10,14 +10,20 @@ onready var fsm := $StateMachine
 onready var los = $LineOfSight
 onready var attention_timer = $AttentionTimer
 onready var tween := $Tween
+onready var anim_player = $AnimationPlayer
+onready var v_notifier = $VisibilityNotifier2D
+
 var los_instance
+var map_level
 
 export var line_of_sight_range := 120
 var target
 
 func _ready():
 	nav_agent.connect("velocity_computed", self, "_on_velocity_computed")
-
+	if anim_player.has_animation(fsm.state.name):
+		anim_player.play(fsm.state.name)
+	
 func _on_velocity_computed(velocity):
 	pass
 
@@ -29,6 +35,7 @@ func look_for_player():
 		if los.is_colliding():
 			if los.get_collider().is_in_group("player"):
 				target = los.get_collider()
+				print("Chasing?")
 				fsm.change_to("Chase")
 				attention_timer.start()
 
@@ -40,11 +47,23 @@ func _on_DetectBox_no_targets_remain():
 	pass
 
 func _on_DetectBox_target_detected(_target):
-	if fsm.state.name != "Hurt":
+	if fsm.state.name == "Chase":
 		fsm.change_to("Attack")
 
 func _on_HurtBox_is_dead():
-	queue_free()
+	pass
 
 func _on_HurtBox_took_damage(amount):
-	fsm.change_to("Hurt")
+	if fsm.state.name == "Dead":
+		return
+	target = get_tree().get_nodes_in_group("player")[0]
+	if hurtbox.hp > 0:
+		fsm.change_to("Hurt")
+	else:
+		map_level.move_to_floor_node(self)
+		fsm.change_to("Dead")
+
+func _on_StateMachine_on_change_state(_state):
+	if anim_player.has_animation(_state.name):
+		anim_player.play(_state.name)
+

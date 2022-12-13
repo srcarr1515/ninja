@@ -10,10 +10,18 @@ func enter():
 	cur_range = get_cur_range()
 	attack()
 
+func on_exit():
+	this.hitbox.get_node("Area/Shape").set_disabled(true)
+
 func get_cur_range():
-	return abs(this.position.distance_to(this.target.position))
+	if this.target:
+		return abs(this.position.distance_to(this.target.position))
+	else:
+		return 0
 
 func attack():
+#	this.anim_player.play("telegraph")
+#	yield(this.anim_player, "animation_finished")
 	if cur_range < get_cur_range() - 10:
 		fsm.change_to("Idle")
 		return
@@ -28,6 +36,7 @@ func attack():
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_IN_OUT
 	)
+	this.hitbox.get_node("Area/Shape").set_disabled(false)
 	this.tween.start()
 	yield(this.tween, "tween_completed")
 	this.tween.interpolate_property(
@@ -41,7 +50,9 @@ func attack():
 	)
 	this.tween.start()
 	yield(this.tween, "tween_completed")
+	this.hitbox.get_node("Area/Shape").set_disabled(true)
 	attack_timer.start()
 
 func _on_Timer_timeout():
-	attack()
+	if fsm.state.name == "Attack":
+		attack()

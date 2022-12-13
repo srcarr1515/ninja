@@ -8,6 +8,7 @@ var state: Object
 var this
 
 var history = []
+signal on_change_state(_state)
 
 func _ready():
 	this = get_parent()
@@ -20,6 +21,8 @@ func _ready():
 
 func change_to(new_state):
 	var next_state = get_node(new_state)
+#	print("old: ", state, " new: ", new_state)
+	emit_signal("on_change_state", next_state)
 	if next_state != null:
 		if state == next_state:
 			return

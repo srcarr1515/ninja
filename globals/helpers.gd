@@ -1,6 +1,6 @@
 extends Node
 
-func pick_nearest(group, _position):
+func pick_nearest(group:String, _position:Vector2):
 	var targets = get_tree().get_nodes_in_group(group)
 	var nearest_target = targets.front()
 	if nearest_target:

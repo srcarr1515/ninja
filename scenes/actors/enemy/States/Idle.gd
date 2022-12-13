@@ -1,8 +1,8 @@
 extends State
 
 func enter():
-	pass
-
+	print("Idle")
+	
 func physics_process(delta):
 	this.look_for_player()
 

@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var tap_timer := $TapTimer
 onready var dash_cd := $DashCD ## Cooldown for Dash Attack
 onready var alt_attack_ct := $AltAttackCT ## Charge Time for Alt Attack
+onready var alt_attack_cd := $AltAttackCD ## Cooldown for Alt Attack
 onready var fsm := $StateMachine
 onready var anim_player := $AnimationPlayer
 onready var hitbox := $HitBox
@@ -14,6 +15,8 @@ var target_position
 var velocity:Vector2
 var move_direction
 
+export (PackedScene) var alt_atk
+export var alt_atk_range := 150
 export var speed:= 500
 export var dash_speed = 500
 export var walk_speed = 150
@@ -42,9 +45,24 @@ func _input(event):
 			GameData.joystick.position = event.position
 			first_touch = event.position
 		elif !event.is_pressed():
+			if !touch_distance || touch_distance < 5:
+				alt_attack(get_canvas_transform().xform_inv(event.position))
 			is_swipe = !tap_timer.is_stopped()
 			GameData.joystick.visible = false
 			is_in_touch = false
+
+func alt_attack(target_position):
+	if alt_attack_cd.is_stopped():
+		var alt_atk_instance = alt_atk.instance()
+		alt_atk_instance.global_position = global_position
+		var enemy = Helpers.pick_nearest("enemies", global_position)
+		if enemy:
+			target_position = enemy.global_position
+		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
+		alt_atk_instance.direction = direction_toward_enemy
+		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
+			get_tree().get_root().add_child(alt_atk_instance)
+			alt_attack_cd.start()
 
 func _physics_process(delta):
 	if fsm.state.name == "Dead":
@@ -74,3 +92,31 @@ func _on_HurtBox_took_damage(amount):
 
 func _on_TapTimer_timeout():
 	pass
+
+func get_direction_name(direction):
+	var dir_name = ""
+	if direction:
+		var dir_angle = Vector2.ZERO.angle_to_point(direction)
+		if dir_angle > 0.8 && dir_angle < 2.2:
+			dir_name = "Up"
+		elif dir_angle > -0.56 && dir_angle < 0.8:
+			dir_name = "Left"
+		elif dir_angle > -2.15 && dir_angle < -0.55:
+			dir_name = "Down"
+		else:
+			dir_name = "Right"
+	return dir_name
+
+func _on_StateMachine_on_change_state(_state):
+	var state_name = _state.name
+	if ["Dash", "AltAct"].has(_state.name):
+		state_name = "Attack"
+	var animation = "{state}_{dir}".format({"state": state_name, "dir": get_direction_name(input_dir)})
+	if _state.name == "Idle":
+		var prev_anim = anim_player.current_animation.split("_")
+		if prev_anim.size() > 1:
+			anim_player.play("Idle_{dir}".format({"dir": prev_anim[1]}) )
+	elif anim_player.has_animation(animation):
+		anim_player.play(animation)
+	elif anim_player.has_animation(_state.name):
+		anim_player.play(_state.name)

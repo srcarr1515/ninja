@@ -1,0 +1,22 @@
+[remap]
+
+importer="vnen.tiled_importer"
+type="PackedScene"
+path="res://.import/baluster-1-rule.tmx-62f93ebd964c462ad82cde645f2398cb.scn"
+
+[deps]
+
+source_file="res://tilemaps/baluster-1-rule.tmx"
+dest_files=[ "res://.import/baluster-1-rule.tmx-62f93ebd964c462ad82cde645f2398cb.scn" ]
+
+[params]
+
+custom_properties=true
+tile_metadata=false
+uv_clip=true
+image_flags=7
+collision_layer=1
+embed_internal_images=false
+save_tiled_properties=false
+add_background=true
+post_import_script=""
