@@ -1,5 +1,6 @@
 extends State
 
 func enter():
-	this.hurtbox.get_node("Area/Shape").set_disabled(true)
-	this.hitbox.get_node("Area/Shape").set_disabled(true)
+	this.hurtbox.set_disabled(true)
+	this.hitbox.set_disabled(true)
+	this.map_level.move_to_floor_node(this)

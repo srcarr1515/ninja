@@ -60,8 +60,10 @@ func _on_HurtBox_took_damage(amount):
 	if hurtbox.hp > 0:
 		fsm.change_to("Hurt")
 	else:
-		map_level.move_to_floor_node(self)
 		fsm.change_to("Dead")
+
+func _on_AttentionTimer_timeout():
+	pass
 
 func _on_StateMachine_on_change_state(_state):
 	if anim_player.has_animation(_state.name):

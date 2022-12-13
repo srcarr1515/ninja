@@ -8,6 +8,9 @@ signal on_hit(target, damage)
 func _ready():
 	hit_area.get_node("Shape")
 
+func set_disabled(is_disabled:bool):
+	get_node("Area/Shape").call_deferred("set_disabled", true)
+
 func _on_Area_area_entered(area):
 	var box = area.get_parent()
 	if "name" in box && box.name == "HurtBox":

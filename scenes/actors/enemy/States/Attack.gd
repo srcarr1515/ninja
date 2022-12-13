@@ -36,7 +36,7 @@ func attack():
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_IN_OUT
 	)
-	this.hitbox.get_node("Area/Shape").set_disabled(false)
+	this.hitbox.set_disabled(false)
 	this.tween.start()
 	yield(this.tween, "tween_completed")
 	this.tween.interpolate_property(
@@ -50,7 +50,7 @@ func attack():
 	)
 	this.tween.start()
 	yield(this.tween, "tween_completed")
-	this.hitbox.get_node("Area/Shape").set_disabled(true)
+	this.hitbox.set_disabled(true)
 	attack_timer.start()
 
 func _on_Timer_timeout():
