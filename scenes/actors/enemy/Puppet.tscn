@@ -12,7 +12,7 @@ resource_name = "BowAttack"
 length = 0.7
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Character/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 17 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:material:shader_param/flash_modifier")
+tracks/1/path = NodePath("Character/Sprite:material:shader_param/flash_modifier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Left:z_index")
+tracks/2/path = NodePath("Character/Left:z_index")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -48,7 +48,7 @@ tracks/2/keys = {
 "values": [ 1 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Right:z_index")
+tracks/3/path = NodePath("Character/Right:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -60,7 +60,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Left:rotation_degrees")
+tracks/4/path = NodePath("Character/Left:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -72,7 +72,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Left:position")
+tracks/5/path = NodePath("Character/Left:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -84,7 +84,7 @@ tracks/5/keys = {
 "values": [ Vector2( -14, -11 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Right:position")
+tracks/6/path = NodePath("Character/Right:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -96,7 +96,7 @@ tracks/6/keys = {
 "values": [ Vector2( 16, -11 ), Vector2( 13, -15 ), Vector2( 13, -15 ), Vector2( 16, -11 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Right:rotation_degrees")
+tracks/7/path = NodePath("Character/Right:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -108,7 +108,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Right/Weapon:frame")
+tracks/8/path = NodePath("Character/Right/Weapon:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -120,7 +120,7 @@ tracks/8/keys = {
 "values": [ 0, 1, 2, 0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Left/Weapon:position")
+tracks/9/path = NodePath("Character/Left/Weapon:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -132,7 +132,7 @@ tracks/9/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 30, -4 ), Vector2( 27, -4 ), Vector2( 25, -4 ), Vector2( 36, -3 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Left/Weapon:rotation_degrees")
+tracks/10/path = NodePath("Character/Left/Weapon:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -144,7 +144,7 @@ tracks/10/keys = {
 "values": [ 270.0, 360.0, 360.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Left/Arm:position")
+tracks/11/path = NodePath("Character/Left/Arm:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -156,7 +156,7 @@ tracks/11/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 22, -4 ), Vector2( 19, -4 ), Vector2( 16, -5 ), Vector2( 14, -5 ), Vector2( 5, -5 ), Vector2( 0, 0 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Left/Arm:rotation_degrees")
+tracks/12/path = NodePath("Character/Left/Arm:rotation_degrees")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -168,7 +168,7 @@ tracks/12/keys = {
 "values": [ 0.0 ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Left/Weapon:z_index")
+tracks/13/path = NodePath("Character/Left/Weapon:z_index")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -180,7 +180,7 @@ tracks/13/keys = {
 "values": [ 0, 1 ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Left/Weapon:visible")
+tracks/14/path = NodePath("Character/Left/Weapon:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -192,7 +192,7 @@ tracks/14/keys = {
 "values": [ true, false ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Right/Arm:material:shader_param/flash_modifier")
+tracks/15/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -204,7 +204,7 @@ tracks/15/keys = {
 "values": [ 0.0 ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Right/Weapon:material:shader_param/flash_modifier")
+tracks/16/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -216,7 +216,7 @@ tracks/16/keys = {
 "values": [ 0.0 ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("Left/Weapon:material:shader_param/flash_modifier")
+tracks/17/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
@@ -228,7 +228,7 @@ tracks/17/keys = {
 "values": [ 0.0 ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("Left/Arm:material:shader_param/flash_modifier")
+tracks/18/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
@@ -245,7 +245,7 @@ resource_name = "Chase"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Character/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -257,7 +257,7 @@ tracks/0/keys = {
 "values": [ 8, 9, 10, 11, 12, 13 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Right:position")
+tracks/1/path = NodePath("Character/Right:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -269,7 +269,7 @@ tracks/1/keys = {
 "values": [ Vector2( -11, -10 ), Vector2( 3, -7 ), Vector2( 19, -10 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Right:rotation_degrees")
+tracks/2/path = NodePath("Character/Right:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -281,7 +281,7 @@ tracks/2/keys = {
 "values": [ 116.4, 90.1, 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Right:z_index")
+tracks/3/path = NodePath("Character/Right:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -293,7 +293,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Left:position")
+tracks/4/path = NodePath("Character/Left:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -305,7 +305,7 @@ tracks/4/keys = {
 "values": [ Vector2( 16, -9 ), Vector2( 3, -6 ), Vector2( -9, -10 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Left:rotation_degrees")
+tracks/5/path = NodePath("Character/Left:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -317,7 +317,7 @@ tracks/5/keys = {
 "values": [ 29.1, 94.6, 140.6 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Left:z_index")
+tracks/6/path = NodePath("Character/Left:z_index")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -341,7 +341,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Left/Weapon:material:shader_param/flash_modifier")
+tracks/8/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -353,7 +353,7 @@ tracks/8/keys = {
 "values": [ 0.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Left/Arm:material:shader_param/flash_modifier")
+tracks/9/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -365,7 +365,7 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Right/Arm:material:shader_param/flash_modifier")
+tracks/10/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -377,7 +377,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Right/Weapon:material:shader_param/flash_modifier")
+tracks/11/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -388,12 +388,24 @@ tracks/11/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Character/Sprite:material:shader_param/flash_modifier")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Dead"
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Character/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -405,7 +417,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Left:position")
+tracks/1/path = NodePath("Character/Left:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -417,7 +429,7 @@ tracks/1/keys = {
 "values": [ Vector2( -14, -11 ), Vector2( -15, -36 ), Vector2( -9, -13 ), Vector2( -10, -7 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Left:rotation_degrees")
+tracks/2/path = NodePath("Character/Left:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -429,7 +441,7 @@ tracks/2/keys = {
 "values": [ 0.0, -43.6, -72.7, -160.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Left:z_index")
+tracks/3/path = NodePath("Character/Left:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -441,7 +453,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Right:position")
+tracks/4/path = NodePath("Character/Right:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -453,7 +465,7 @@ tracks/4/keys = {
 "values": [ Vector2( 16, -11 ), Vector2( 14, -33 ), Vector2( 13, -18 ), Vector2( 7, -8 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Right:rotation_degrees")
+tracks/5/path = NodePath("Character/Right:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -465,7 +477,7 @@ tracks/5/keys = {
 "values": [ 0.0, 36.4, 138.2 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Right:z_index")
+tracks/6/path = NodePath("Character/Right:z_index")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -489,7 +501,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Right/Arm:material:shader_param/flash_modifier")
+tracks/8/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -501,7 +513,7 @@ tracks/8/keys = {
 "values": [ 0.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Right/Weapon:material:shader_param/flash_modifier")
+tracks/9/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -513,7 +525,7 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Left/Arm:material:shader_param/flash_modifier")
+tracks/10/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -525,12 +537,24 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Left/Weapon:material:shader_param/flash_modifier")
+tracks/11/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Character/Sprite:material:shader_param/flash_modifier")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -542,7 +566,7 @@ resource_name = "Idle"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Character/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -554,7 +578,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Left:position")
+tracks/1/path = NodePath("Character/Left:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -566,7 +590,7 @@ tracks/1/keys = {
 "values": [ Vector2( -14, -11 ), Vector2( -14, -8 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Right:position")
+tracks/2/path = NodePath("Character/Right:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -578,7 +602,7 @@ tracks/2/keys = {
 "values": [ Vector2( 16, -11 ), Vector2( 16, -8 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Right:rotation_degrees")
+tracks/3/path = NodePath("Character/Right:rotation_degrees")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -590,7 +614,7 @@ tracks/3/keys = {
 "values": [ 0.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Left:rotation_degrees")
+tracks/4/path = NodePath("Character/Left:rotation_degrees")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -602,7 +626,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Left:z_index")
+tracks/5/path = NodePath("Character/Left:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -614,7 +638,7 @@ tracks/5/keys = {
 "values": [ 0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Right:z_index")
+tracks/6/path = NodePath("Character/Right:z_index")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -638,7 +662,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Left/Weapon:material:shader_param/flash_modifier")
+tracks/8/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -650,7 +674,7 @@ tracks/8/keys = {
 "values": [ 0.0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Left/Arm:material:shader_param/flash_modifier")
+tracks/9/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -662,7 +686,7 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Right/Weapon:material:shader_param/flash_modifier")
+tracks/10/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -674,7 +698,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Right/Arm:material:shader_param/flash_modifier")
+tracks/11/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -710,13 +734,14 @@ shader = ExtResource( 2 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 1.0
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/flash_color = Color( 1, 0.607843, 0, 1 )
 shader_param/flash_modifier = 0.0
 
 [node name="Puppet" instance=ExtResource( 3 )]
+x_flip_on_move = true
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/BowAttack = SubResource( 4 )
@@ -724,44 +749,44 @@ anims/Chase = SubResource( 3 )
 anims/Dead = SubResource( 5 )
 anims/Idle = SubResource( 1 )
 
-[node name="Left" type="Node2D" parent="." index="5"]
+[node name="Left" type="Node2D" parent="Character" index="0"]
 position = Vector2( -14, -11 )
 
-[node name="Weapon" type="Sprite" parent="Left" index="0"]
+[node name="Weapon" type="Sprite" parent="Character/Left" index="0"]
 material = SubResource( 7 )
 rotation = 4.71239
 texture = ExtResource( 6 )
 
-[node name="Arm" type="Sprite" parent="Left" index="1"]
+[node name="Arm" type="Sprite" parent="Character/Left" index="1"]
 material = SubResource( 8 )
 texture = ExtResource( 4 )
 hframes = 2
 vframes = 4
 frame = 6
 
-[node name="Right" type="Node2D" parent="." index="6"]
+[node name="Right" type="Node2D" parent="Character" index="1"]
 position = Vector2( 16, -11 )
 
-[node name="Weapon" type="Sprite" parent="Right" index="0"]
+[node name="Weapon" type="Sprite" parent="Character/Right" index="0"]
 material = SubResource( 9 )
 position = Vector2( -3, -1 )
 texture = ExtResource( 5 )
 hframes = 3
 
-[node name="Arm" type="Sprite" parent="Right" index="1"]
+[node name="Arm" type="Sprite" parent="Character/Right" index="1"]
 material = SubResource( 10 )
 texture = ExtResource( 4 )
 hframes = 2
 vframes = 4
 frame = 7
 
-[node name="Sprite" parent="." index="7"]
-material = SubResource( 6 )
-position = Vector2( 2, -31 )
+[node name="Sprite" parent="Character" index="2"]
+material = SubResource( 11 )
+position = Vector2( 2, -32 )
 texture = ExtResource( 1 )
 hframes = 18
 
-[node name="HealthBar" parent="." index="8"]
+[node name="HealthBar" parent="." index="6"]
 margin_top = -37.0
 margin_bottom = -33.0
 

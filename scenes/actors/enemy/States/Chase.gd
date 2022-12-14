@@ -15,5 +15,4 @@ func physics_process(delta):
 		var direction = this.global_position.direction_to(target_pos)
 		var velocity = direction * this.nav_agent.max_speed
 		this.set_flip_h(this.x_flip_on_move && velocity.x < 0)
-
 		this.move_and_slide(velocity)

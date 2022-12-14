@@ -35,11 +35,11 @@ __meta__ = {
 
 [node name="Level" parent="Stage" instance=ExtResource( 7 )]
 
-[node name="Player" parent="Stage/Level/map" index="1" instance=ExtResource( 5 )]
-position = Vector2( 111, 376 )
+[node name="SkeletonArcher" parent="Stage/Level/map" index="1" instance=ExtResource( 9 )]
+position = Vector2( 303, 306 )
 
-[node name="SkeletonArcher" parent="Stage/Level/map" index="2" instance=ExtResource( 9 )]
-position = Vector2( 286, 191 )
+[node name="Player" parent="Stage/Level/map" index="2" instance=ExtResource( 5 )]
+position = Vector2( 111, 376 )
 
 [node name="Timer" parent="Stage/Level" index="5"]
 autostart = false

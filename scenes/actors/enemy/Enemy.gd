@@ -3,7 +3,8 @@ class_name Enemy
 
 onready var nav_agent := $NavAgent
 onready var nav_timer := $NavTimer
-onready var sprite := $Sprite
+onready var character := $Character
+onready var sprite := $Character/Sprite
 onready var hitbox := $HitBox
 onready var detectbox := $DetectBox
 onready var hurtbox := $HurtBox
@@ -34,26 +35,15 @@ func _ready():
 
 func set_flip_h(is_flipped:bool):
 	flip_h = is_flipped
-	var left_weapon = get_node("Left/Weapon")
-	var left_arm = get_node("Left/Arm")
-	var right_weapon = get_node("Right/Weapon")
-	var right_arm = get_node("Right/Arm")
-	if !flip_h:
-		sprite.scale.x = abs(sprite.scale.x) * -1
-		if left_arm:
-			left_arm.scale.x = abs(left_arm.scale.x) * -1
-			left_weapon.scale.x = abs(left_weapon.scale.x) * -1
-		if right_arm:
-			right_arm.scale.x = abs(right_arm.scale.x) * -1
-			right_weapon.scale.x = abs(right_weapon.scale.x) * -1
+#	var left_weapon = get_node("Left/Weapon")
+#	var left_arm = get_node("Left/Arm")
+#	var right_weapon = get_node("Right/Weapon")
+#	var right_arm = get_node("Right/Arm")
+	print("flipped: ", flip_h)
+	if flip_h:
+		character.scale.x = abs(character.scale.x) * -1
 	else:
-		sprite.scale.x = abs(sprite.scale.x)
-		if left_arm:
-			left_arm.scale.x = abs(left_arm.scale.x)
-			left_weapon.scale.x = abs(left_weapon.scale.x)
-		if right_arm:
-			right_arm.scale.x = abs(right_arm.scale.x)
-			right_weapon.scale.x = abs(right_weapon.scale.x)
+		character.scale.x = abs(character.scale.x)
 
 func _on_velocity_computed(velocity):
 	pass
