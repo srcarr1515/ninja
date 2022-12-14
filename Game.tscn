@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://states/game/GameState.gd" type="Script" id=1]
 [ext_resource path="res://states/game/MainMenu.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Game.gd" type="Script" id=6]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MainCamera.gd" type="Script" id=8]
+[ext_resource path="res://scenes/actors/enemy/SkeletonArcher.tscn" type="PackedScene" id=9]
 [ext_resource path="res://library/common/Joystick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Stage.gd" type="Script" id=11]
 
@@ -36,6 +37,12 @@ __meta__ = {
 
 [node name="Player" parent="Stage/Level/map" index="1" instance=ExtResource( 5 )]
 position = Vector2( 111, 376 )
+
+[node name="SkeletonArcher" parent="Stage/Level/map" index="2" instance=ExtResource( 9 )]
+position = Vector2( 286, 191 )
+
+[node name="Timer" parent="Stage/Level" index="5"]
+autostart = false
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 362, 739 )

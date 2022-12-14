@@ -23,13 +23,38 @@ var velocity = Vector2.ZERO
 export var x_flip_on_move := false
 export var line_of_sight_range := 120
 var target
+export var flip_h := false 
 
 func _ready():
 	nav_agent.connect("velocity_computed", self, "_on_velocity_computed")
 	fsm.this = self
+#	set_flip_h(true)
 	if anim_player.has_animation(fsm.state.name):
 		anim_player.play(fsm.state.name)
-	
+
+func set_flip_h(is_flipped:bool):
+	flip_h = is_flipped
+	var left_weapon = get_node("Left/Weapon")
+	var left_arm = get_node("Left/Arm")
+	var right_weapon = get_node("Right/Weapon")
+	var right_arm = get_node("Right/Arm")
+	if !flip_h:
+		sprite.scale.x = abs(sprite.scale.x) * -1
+		if left_arm:
+			left_arm.scale.x = abs(left_arm.scale.x) * -1
+			left_weapon.scale.x = abs(left_weapon.scale.x) * -1
+		if right_arm:
+			right_arm.scale.x = abs(right_arm.scale.x) * -1
+			right_weapon.scale.x = abs(right_weapon.scale.x) * -1
+	else:
+		sprite.scale.x = abs(sprite.scale.x)
+		if left_arm:
+			left_arm.scale.x = abs(left_arm.scale.x)
+			left_weapon.scale.x = abs(left_weapon.scale.x)
+		if right_arm:
+			right_arm.scale.x = abs(right_arm.scale.x)
+			right_weapon.scale.x = abs(right_weapon.scale.x)
+
 func _on_velocity_computed(velocity):
 	pass
 
@@ -82,6 +107,9 @@ func _on_AttentionTimer_timeout():
 	pass
 
 func _on_StateMachine_on_change_state(_state):
+	print(_state.name, ": ", anim_player.has_animation(_state.name))
 	if anim_player.has_animation(_state.name):
 		anim_player.play(_state.name)
+	elif _state.name == "Attack" && anim_player.has_animation("BowAttack"):
+		anim_player.play("BowAttack")
 
