@@ -9,6 +9,7 @@ onready var anim_player := $AnimationPlayer
 onready var hitbox := $HitBox
 onready var detectbox := $DetectBox
 onready var hurtbox := $HurtBox
+onready var weapon_sprite = $Weapon
 
 var first_touch
 var target_position
@@ -27,6 +28,9 @@ var input_dir
 var touch_distance
 var is_swipe = false
 var is_in_touch = false
+
+func _ready():
+	weapon_sprite.visible = false
 
 func _input(event):
 	if event is InputEventScreenDrag:
@@ -92,9 +96,12 @@ func _physics_process(delta):
 		else:
 			move_speed = clamp(move_speed, 1, 3)
 			velocity = position.direction_to(position + input_dir) * (move_speed * 50)
+			if fsm.state.name == "Dash":
+				yield(anim_player, "animation_finished")
 			fsm.change_to("Walk")
 			move_and_slide(velocity)
 	else:
+		yield(anim_player, "animation_finished")
 		fsm.change_to("Idle")
 
 func _on_HurtBox_is_dead():

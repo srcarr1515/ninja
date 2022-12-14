@@ -126,6 +126,7 @@ shader_param/flash_color = Color( 1, 0.607843, 0, 1 )
 shader_param/flash_modifier = 0.0
 
 [node name="Bat" instance=ExtResource( 1 )]
+x_flip_on_move = true
 
 [node name="AnimationPlayer" parent="." index="0"]
 anims/Attack = SubResource( 1 )

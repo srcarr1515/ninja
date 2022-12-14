@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scenes/actors/enemy/Enemy.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "PlatformerController2D",
 "language": "GDScript",
 "path": "res://library/game_type/platformer/platformer_controller.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://library/state_machine/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
 "PlatformerController2D": "",
 "State": "",
 "StateMachine": ""

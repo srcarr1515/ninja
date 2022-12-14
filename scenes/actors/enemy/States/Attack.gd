@@ -3,12 +3,13 @@ extends State
 onready var attack_timer = $Timer
 export var attack_speed = 0.5
 export var attack_rate = 1
+export (String, "melee", "ranged") var attack_type = "melee"
 var cur_range
 
 func enter():
 	attack_timer.wait_time = attack_rate
 	cur_range = get_cur_range()
-	attack()
+	call_deferred(attack_type)
 
 func on_exit():
 	this.hitbox.get_node("Area/Shape").set_disabled(true)
@@ -19,7 +20,7 @@ func get_cur_range():
 	else:
 		return 0
 
-func attack():
+func melee():
 #	this.anim_player.play("telegraph")
 #	yield(this.anim_player, "animation_finished")
 	if cur_range < get_cur_range() - 10:
@@ -55,4 +56,4 @@ func attack():
 
 func _on_Timer_timeout():
 	if fsm.state.name == "Attack":
-		attack()
+		call_deferred(attack_type)

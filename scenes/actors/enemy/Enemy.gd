@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Enemy
 
 onready var nav_agent := $NavAgent
 onready var nav_timer := $NavTimer
@@ -19,6 +20,7 @@ var los_instance
 var map_level
 var velocity = Vector2.ZERO
 
+export var x_flip_on_move := false
 export var line_of_sight_range := 120
 var target
 
