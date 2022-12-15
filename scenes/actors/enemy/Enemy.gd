@@ -16,6 +16,8 @@ onready var anim_player = $AnimationPlayer
 onready var v_notifier = $VisibilityNotifier2D
 onready var soft_collision = $SoftCollision
 onready var health_bar = $HealthBar
+var left_pivot
+var right_pivot
 
 var los_instance
 var map_level
@@ -29,17 +31,13 @@ export var flip_h := false
 func _ready():
 	nav_agent.connect("velocity_computed", self, "_on_velocity_computed")
 	fsm.this = self
-#	set_flip_h(true)
+	left_pivot = get_node("Character/LeftPivot")
+	right_pivot = get_node("Character/RightPivot")
 	if anim_player.has_animation(fsm.state.name):
 		anim_player.play(fsm.state.name)
 
 func set_flip_h(is_flipped:bool):
 	flip_h = is_flipped
-#	var left_weapon = get_node("Left/Weapon")
-#	var left_arm = get_node("Left/Arm")
-#	var right_weapon = get_node("Right/Weapon")
-#	var right_arm = get_node("Right/Arm")
-	print("flipped: ", flip_h)
 	if flip_h:
 		character.scale.x = abs(character.scale.x) * -1
 	else:
@@ -68,14 +66,15 @@ func look_for_player():
 				attention_timer.start()
 
 func _on_NavTimer_timeout():
-	if GameData.player.global_position:
-		nav_agent.set_target_location(GameData.player.global_position)
+	if target:
+		nav_agent.set_target_location(target.global_position)
 
 func _on_DetectBox_no_targets_remain():
 	pass
 
 func _on_DetectBox_target_detected(_target):
-	if fsm.state.name == "Chase":
+	print(_target)
+	if fsm.state.name == "Chase" || fsm.state.name == "Escape":
 		fsm.change_to("Attack")
 
 func _on_HurtBox_is_dead():
@@ -87,7 +86,6 @@ func _on_HurtBox_took_damage(amount):
 	target = get_tree().get_nodes_in_group("player")[0]
 	if hurtbox.hp > 0:
 		var perc_hp = (float(hurtbox.hp)/float(hurtbox.max_hp)) * 100
-		print(perc_hp)
 		health_bar.set_health_bar(perc_hp)
 		fsm.change_to("Hurt")
 	else:
@@ -96,10 +94,14 @@ func _on_HurtBox_took_damage(amount):
 func _on_AttentionTimer_timeout():
 	pass
 
-func _on_StateMachine_on_change_state(_state):
-	print(_state.name, ": ", anim_player.has_animation(_state.name))
-	if anim_player.has_animation(_state.name):
-		anim_player.play(_state.name)
+func play_state_animation(_state):
+	var state = _state.name
+	if _state.name == "Escape":
+		state = "Chase"
+	if anim_player.has_animation(state):
+		anim_player.play(state)
 	elif _state.name == "Attack" && anim_player.has_animation("BowAttack"):
 		anim_player.play("BowAttack")
 
+func _on_StateMachine_on_change_state(_state):
+	play_state_animation(_state)

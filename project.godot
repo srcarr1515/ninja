@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actors/enemy/Enemy.gd"
 }, {
+"base": "Resource",
+"class": "Formation",
+"language": "GDScript",
+"path": "res://resources/formation.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "PlatformerController2D",
 "language": "GDScript",
 "path": "res://library/game_type/platformer/platformer_controller.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/actors/player/Player.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -31,7 +41,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Enemy": "",
+"Formation": "",
 "PlatformerController2D": "",
+"Player": "",
 "State": "",
 "StateMachine": ""
 }
@@ -56,7 +68,7 @@ window/size/test_height=740
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-window/stretch/shrink=4.0
+window/stretch/shrink=2.0
 
 [editor_plugins]
 

@@ -20,8 +20,14 @@ position = Vector2( 151, 209 )
 
 [node name="map" parent="." instance=ExtResource( 2 )]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[node name="ShiftTimer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="ShiftTimer" to="." method="_on_ShiftTimer_timeout"]

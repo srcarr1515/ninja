@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 onready var tap_timer := $TapTimer
 onready var dash_cd := $DashCD ## Cooldown for Dash Attack
@@ -72,9 +73,11 @@ func alt_attack(target_position):
 	if alt_attack_cd.is_stopped():
 		var alt_atk_instance = alt_atk.instance()
 		alt_atk_instance.global_position = global_position
-#		var enemy = nearest_active_enemy()
-#		if enemy:
-#			target_position = enemy.global_position
+		print(abs(global_position.distance_to(target_position)))
+		if abs(global_position.distance_to(target_position)) < 64:
+			var enemy = nearest_active_enemy()
+			if enemy:
+				target_position = enemy.global_position
 		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
 			get_tree().get_root().add_child(alt_atk_instance)
 			var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
@@ -91,7 +94,8 @@ func _physics_process(delta):
 	if input_dir:
 		if is_swipe:
 			velocity = position.direction_to(position + input_dir) * 15
-			var collision = move_and_collide(velocity)
+			velocity = move_and_slide(velocity * 72)
+#			var collision = move_and_collide(velocity)
 			fsm.change_to("Dash")
 		else:
 			move_speed = clamp(move_speed, 1, 3)

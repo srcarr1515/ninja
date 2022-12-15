@@ -13,6 +13,9 @@ speed = 20
 
 [node name="HitBox" parent="." instance=ExtResource( 2 )]
 
+[node name="Area" parent="HitBox" index="0"]
+collision_layer = 0
+
 [connection signal="on_hit" from="HitBox" to="." method="_on_HitBox_on_hit"]
 
 [editable path="HitBox"]

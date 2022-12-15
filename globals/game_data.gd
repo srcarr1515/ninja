@@ -5,6 +5,17 @@ var player_data = {}
 var player
 var joystick
 var hp_label
+var exit_hp_label
+var timer_label
+var level_map
+var level_exit
+var escapee_ct = 0
+
+func add_escapee():
+	escapee_ct += 1
+	if escapee_ct > 9:
+		OS.alert("Game Over... Too many monsters escaped.")
+		escapee_ct = -99
 
 func destroy(_target):
 	graveyard.push_front(_target)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/actors/enemy/Puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://library/shaders/colorize.tres" type="Shader" id=2]
@@ -33,22 +33,58 @@ shader = ExtResource( 2 )
 shader_param/flash_color = Color( 1, 0.607843, 0, 1 )
 shader_param/flash_modifier = 0.0
 
+[sub_resource type="CapsuleShape2D" id=10]
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 69.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 9.45
+
 [node name="SkeletonArcher" instance=ExtResource( 1 )]
 
-[node name="Weapon" parent="Character/Left" index="0"]
+[node name="Weapon" parent="Character/LeftPivot/Left" index="0"]
 material = SubResource( 6 )
 
-[node name="Arm" parent="Character/Left" index="1"]
+[node name="Arm" parent="Character/LeftPivot/Left" index="1"]
 material = SubResource( 7 )
 
-[node name="Weapon" parent="Character/Right" index="0"]
+[node name="Weapon" parent="Character/RightPivot/Right" index="0"]
 material = SubResource( 8 )
 
-[node name="Arm" parent="Character/Right" index="1"]
+[node name="Arm" parent="Character/RightPivot/Right" index="1"]
 material = SubResource( 9 )
 
 [node name="Sprite" parent="Character" index="2"]
 material = SubResource( 5 )
+
+[node name="HitBox" parent="." index="7"]
+visible = false
+
+[node name="Shape" parent="HitBox/Area" index="0"]
+position = Vector2( 0, -13 )
+shape = SubResource( 10 )
+
+[node name="DetectBox" parent="." index="8"]
+visible = true
+
+[node name="Shape" parent="DetectBox/Area" index="0"]
+shape = SubResource( 12 )
+
+[node name="HurtBox" parent="." index="9"]
+max_hp = 5
+
+[node name="Shape" parent="HurtBox/Area" index="0"]
+position = Vector2( 0, -13 )
+shape = SubResource( 11 )
+
+[node name="SoftCollision" parent="." index="13"]
+visible = false
+
+[node name="Attack" parent="StateMachine" index="3"]
+attack_type = "ranged"
+max_range = 80
 
 [editable path="HitBox"]
 [editable path="DetectBox"]

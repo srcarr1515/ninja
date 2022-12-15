@@ -5,4 +5,6 @@ func enter():
 	
 func physics_process(delta):
 	this.look_for_player()
+	if !this.target:
+		fsm.change_to("Escape")
 

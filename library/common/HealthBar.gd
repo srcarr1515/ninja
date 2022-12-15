@@ -9,7 +9,6 @@ func _on_Timer_timeout():
 	pass # Replace with function body.
 
 func set_health_bar(health_value):
-	print(health_value)
 	value = health_value
 	modulate.a = 1
 	timer.start()

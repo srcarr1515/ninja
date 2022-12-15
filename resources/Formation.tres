@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/formation.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+enemy_name = ""
+spawn_rate = 0.0

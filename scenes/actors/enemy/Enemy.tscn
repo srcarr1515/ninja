@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/actors/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actors/enemy/States/EnemyStateMachine.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://library/common/DetectBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://library/common/HurtBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://library/common/HitBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/actors/enemy/States/Escape.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/actors/player/states/Attack.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/actors/player/states/Hurt.tscn" type="PackedScene" id=11]
 [ext_resource path="res://library/shaders/colorize.tres" type="Shader" id=12]
@@ -54,7 +55,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Character/Left:position")
+tracks/3/path = NodePath("Character/LeftPivot/Left:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -66,7 +67,7 @@ tracks/3/keys = {
 "values": [ Vector2( -14, -11 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Character/Right:position")
+tracks/4/path = NodePath("Character/RightPivot/Right:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -78,7 +79,7 @@ tracks/4/keys = {
 "values": [ Vector2( 16, -11 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Character/Right:rotation_degrees")
+tracks/5/path = NodePath("Character/RightPivot/Right:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -90,7 +91,7 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Character/Left:rotation_degrees")
+tracks/6/path = NodePath("Character/LeftPivot/Left:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -102,7 +103,7 @@ tracks/6/keys = {
 "values": [ 0.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Character/Left:z_index")
+tracks/7/path = NodePath("Character/LeftPivot/Left:z_index")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -114,7 +115,7 @@ tracks/7/keys = {
 "values": [ 0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Character/Right:z_index")
+tracks/8/path = NodePath("Character/RightPivot/Right:z_index")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -126,7 +127,7 @@ tracks/8/keys = {
 "values": [ 0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Character/Right/Weapon:frame")
+tracks/9/path = NodePath("Character/RightPivot/Right/Weapon:frame")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -138,7 +139,7 @@ tracks/9/keys = {
 "values": [ 0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Character/Left/Weapon:position")
+tracks/10/path = NodePath("Character/LeftPivot/Left/Weapon:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -150,7 +151,7 @@ tracks/10/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Character/Left/Weapon:rotation_degrees")
+tracks/11/path = NodePath("Character/LeftPivot/Left/Weapon:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -162,7 +163,7 @@ tracks/11/keys = {
 "values": [ 270.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Character/Left/Arm:position")
+tracks/12/path = NodePath("Character/LeftPivot/Left/Arm:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -174,7 +175,7 @@ tracks/12/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Character/Left/Arm:rotation_degrees")
+tracks/13/path = NodePath("Character/LeftPivot/Left/Arm:rotation_degrees")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -186,7 +187,7 @@ tracks/13/keys = {
 "values": [ 0.0 ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Character/Left/Weapon:z_index")
+tracks/14/path = NodePath("Character/LeftPivot/Left/Weapon:z_index")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -198,7 +199,7 @@ tracks/14/keys = {
 "values": [ 0 ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Character/Left/Weapon:visible")
+tracks/15/path = NodePath("Character/LeftPivot/Left/Weapon:visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -210,7 +211,7 @@ tracks/15/keys = {
 "values": [ true ]
 }
 tracks/16/type = "value"
-tracks/16/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
+tracks/16/path = NodePath("Character/LeftPivot/Left/Weapon:material:shader_param/flash_modifier")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
@@ -222,7 +223,7 @@ tracks/16/keys = {
 "values": [ 1.0 ]
 }
 tracks/17/type = "value"
-tracks/17/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
+tracks/17/path = NodePath("Character/LeftPivot/Left/Arm:material:shader_param/flash_modifier")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/imported = false
@@ -234,7 +235,7 @@ tracks/17/keys = {
 "values": [ 1.0 ]
 }
 tracks/18/type = "value"
-tracks/18/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
+tracks/18/path = NodePath("Character/RightPivot/Right/Weapon:material:shader_param/flash_modifier")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/imported = false
@@ -246,7 +247,7 @@ tracks/18/keys = {
 "values": [ 1.0 ]
 }
 tracks/19/type = "value"
-tracks/19/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
+tracks/19/path = NodePath("Character/RightPivot/Right/Arm:material:shader_param/flash_modifier")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/imported = false
@@ -258,7 +259,7 @@ tracks/19/keys = {
 "values": [ 1.0 ]
 }
 tracks/20/type = "value"
-tracks/20/path = NodePath("Character/Right/Weapon:position")
+tracks/20/path = NodePath("Character/RightPivot/Right/Weapon:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/imported = false
@@ -270,7 +271,7 @@ tracks/20/keys = {
 "values": [ Vector2( -3, -1 ) ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("Character/Right/Weapon:rotation_degrees")
+tracks/21/path = NodePath("Character/RightPivot/Right/Weapon:rotation_degrees")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
@@ -282,7 +283,7 @@ tracks/21/keys = {
 "values": [ 0.0 ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("Character/Right/Weapon:z_index")
+tracks/22/path = NodePath("Character/RightPivot/Right/Weapon:z_index")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -304,6 +305,30 @@ tracks/23/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ true ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("Character/LeftPivot:position")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("Character/RightPivot:position")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -333,7 +358,7 @@ tracks/1/keys = {
 "values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Character/Left/Weapon:material:shader_param/flash_modifier")
+tracks/2/path = NodePath("Character/LeftPivot/Left/Weapon:material:shader_param/flash_modifier")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -345,7 +370,7 @@ tracks/2/keys = {
 "values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Character/Left/Arm:material:shader_param/flash_modifier")
+tracks/3/path = NodePath("Character/LeftPivot/Left/Arm:material:shader_param/flash_modifier")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -357,7 +382,7 @@ tracks/3/keys = {
 "values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Character/Right/Weapon:material:shader_param/flash_modifier")
+tracks/4/path = NodePath("Character/RightPivot/Right/Weapon:material:shader_param/flash_modifier")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -369,7 +394,7 @@ tracks/4/keys = {
 "values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Character/Right/Arm:material:shader_param/flash_modifier")
+tracks/5/path = NodePath("Character/RightPivot/Right/Arm:material:shader_param/flash_modifier")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -381,7 +406,7 @@ tracks/5/keys = {
 "values": [ 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Character/Left:position")
+tracks/6/path = NodePath("Character/LeftPivot/Left:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -393,7 +418,7 @@ tracks/6/keys = {
 "values": [ Vector2( -13, -14 ), Vector2( -15, -19 ), Vector2( -15, -19 ), Vector2( -9, -12 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Character/Left:rotation_degrees")
+tracks/7/path = NodePath("Character/LeftPivot/Left:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -405,7 +430,7 @@ tracks/7/keys = {
 "values": [ -12.3 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Character/Right:position")
+tracks/8/path = NodePath("Character/RightPivot/Right:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -417,7 +442,7 @@ tracks/8/keys = {
 "values": [ Vector2( 13, -13 ), Vector2( 11, -20 ), Vector2( 11, -20 ), Vector2( 10, -11 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Character/Right:rotation_degrees")
+tracks/9/path = NodePath("Character/RightPivot/Right:rotation_degrees")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -429,7 +454,7 @@ tracks/9/keys = {
 "values": [ -14.5 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Character/Right/Weapon:position")
+tracks/10/path = NodePath("Character/RightPivot/Right/Weapon:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -441,7 +466,7 @@ tracks/10/keys = {
 "values": [ Vector2( -3, -1 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Character/Right/Weapon:rotation_degrees")
+tracks/11/path = NodePath("Character/RightPivot/Right/Weapon:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -453,7 +478,7 @@ tracks/11/keys = {
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Character/Right/Weapon:z_index")
+tracks/12/path = NodePath("Character/RightPivot/Right/Weapon:z_index")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -514,7 +539,7 @@ shader_param/flash_modifier = 0.0
 radius = 6.0
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 19.0263
+radius = 22.0907
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 10.0499
@@ -614,6 +639,8 @@ shape = SubResource( 10 )
 [node name="Hurt" parent="StateMachine" instance=ExtResource( 11 )]
 
 [node name="Dead" parent="StateMachine" instance=ExtResource( 13 )]
+
+[node name="Escape" parent="StateMachine" instance=ExtResource( 9 )]
 
 [connection signal="timeout" from="NavTimer" to="." method="_on_NavTimer_timeout"]
 [connection signal="no_targets_remain" from="DetectBox" to="." method="_on_DetectBox_no_targets_remain"]

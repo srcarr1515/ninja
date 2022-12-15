@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://states/game/GameState.gd" type="Script" id=1]
 [ext_resource path="res://states/game/MainMenu.gd" type="Script" id=2]
@@ -8,9 +8,11 @@
 [ext_resource path="res://Game.gd" type="Script" id=6]
 [ext_resource path="res://scenes/level/Level.tscn" type="PackedScene" id=7]
 [ext_resource path="res://MainCamera.gd" type="Script" id=8]
-[ext_resource path="res://scenes/actors/enemy/SkeletonArcher.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actors/enemy/Bat.tscn" type="PackedScene" id=9]
 [ext_resource path="res://library/common/Joystick.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Stage.gd" type="Script" id=11]
+[ext_resource path="res://scenes/actors/enemy/SkeletonArcher.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/level/Exit.tscn" type="PackedScene" id=13]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 6 )
@@ -34,20 +36,22 @@ __meta__ = {
 }
 
 [node name="Level" parent="Stage" instance=ExtResource( 7 )]
+formation_set_enemies = [ ExtResource( 9 ), ExtResource( 12 ) ]
+formation_set_rates = [ 0.25, 0.1 ]
 
-[node name="SkeletonArcher" parent="Stage/Level/map" index="1" instance=ExtResource( 9 )]
-position = Vector2( 303, 306 )
+[node name="Exit" parent="Stage/Level/map" index="1" instance=ExtResource( 13 )]
+position = Vector2( 509, 148 )
 
-[node name="Player" parent="Stage/Level/map" index="2" instance=ExtResource( 5 )]
+[node name="SkeletonArcher" parent="Stage/Level/map" index="2" instance=ExtResource( 12 )]
+position = Vector2( 313, 179 )
+
+[node name="Player" parent="Stage/Level/map" index="3" instance=ExtResource( 5 )]
 position = Vector2( 111, 376 )
-
-[node name="Timer" parent="Stage/Level" index="5"]
-autostart = false
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 362, 739 )
 current = true
-zoom = Vector2( 1.2, 1.2 )
+zoom = Vector2( 0.9, 0.9 )
 smoothing_enabled = true
 script = ExtResource( 8 )
 
@@ -64,6 +68,21 @@ margin_top = 7.0
 margin_right = 49.0
 margin_bottom = 21.0
 text = "HP: 1"
+
+[node name="ExitLabel" type="Label" parent="MainCamera/UI"]
+margin_left = 61.0
+margin_top = 7.0
+margin_right = 101.0
+margin_bottom = 21.0
+text = "HP: 1"
+
+[node name="Timer" type="Label" parent="MainCamera/UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = 6.0
+margin_bottom = 20.0
+text = "01:22"
 
 [editable path="Stage/Level"]
 [editable path="Stage/Level/map"]
