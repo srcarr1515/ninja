@@ -5,15 +5,15 @@ onready var this = get_parent()
 export (int) var max_hp = 10
 onready var hp = max_hp
 
-signal took_damage(amount)
+signal took_damage(amount, attacker)
 signal is_dead
 
 func set_disabled(is_disabled:bool):
 	get_node("Area/Shape").call_deferred("set_disabled", is_disabled)
 
-func get_hurt(amount):
+func get_hurt(amount, attacker):
 	hp -= amount
-	emit_signal("took_damage", amount)
+	emit_signal("took_damage", amount, attacker)
 	if hp < 1:
 		hp = 0
 		emit_signal("is_dead")

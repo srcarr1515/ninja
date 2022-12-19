@@ -31,8 +31,8 @@ export var flip_h := false
 func _ready():
 	nav_agent.connect("velocity_computed", self, "_on_velocity_computed")
 	fsm.this = self
-	left_pivot = get_node("Character/LeftPivot")
-	right_pivot = get_node("Character/RightPivot")
+	left_pivot = get_node_or_null("Character/LeftPivot")
+	right_pivot = get_node_or_null("Character/RightPivot")
 	if anim_player.has_animation(fsm.state.name):
 		anim_player.play(fsm.state.name)
 
@@ -73,17 +73,20 @@ func _on_DetectBox_no_targets_remain():
 	pass
 
 func _on_DetectBox_target_detected(_target):
-	print(_target)
 	if fsm.state.name == "Chase" || fsm.state.name == "Escape":
+		target = _target
 		fsm.change_to("Attack")
 
 func _on_HurtBox_is_dead():
 	pass
 
-func _on_HurtBox_took_damage(amount):
+func _on_HurtBox_took_damage(amount, attacker):
 	if fsm.state.name == "Dead":
 		return
-	target = get_tree().get_nodes_in_group("player")[0]
+	target = attacker
+	if attacker is Bullet:
+		target = attacker.this_owner
+		print("this owner: ", target)
 	if hurtbox.hp > 0:
 		var perc_hp = (float(hurtbox.hp)/float(hurtbox.max_hp)) * 100
 		health_bar.set_health_bar(perc_hp)

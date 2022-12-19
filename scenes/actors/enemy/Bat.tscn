@@ -53,7 +53,7 @@ tracks/0/keys = {
 "values": [ 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 103 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:material:shader_param/flash_modifier")
+tracks/1/path = NodePath("Character/Sprite:material:shader_param/flash_modifier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -95,6 +95,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 75, 76, 77, 78, 79, 80, 81, 82, 83 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Character/Sprite:material:shader_param/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=5]

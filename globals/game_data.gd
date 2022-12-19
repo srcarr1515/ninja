@@ -4,9 +4,12 @@ onready var graveyard = []
 var player_data = {}
 var player
 var joystick
+
 var hp_label
 var exit_hp_label
 var timer_label
+var trap_cd_label
+
 var level_map
 var level_exit
 var escapee_ct = 0

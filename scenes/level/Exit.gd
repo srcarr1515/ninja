@@ -9,7 +9,7 @@ func _ready():
 	GameData.exit_hp_label.text = "Exit HP: {hp}".format({"hp": hurtbox.hp})
 	GameData.level_exit = self
 
-func _on_HurtBox_took_damage(amount):
+func _on_HurtBox_took_damage(amount, attacker):
 	if hurtbox.hp >= 0 && !is_open:
 		GameData.exit_hp_label.text = "Exit HP: {hp}".format({"hp": hurtbox.hp})
 	elif !is_open:

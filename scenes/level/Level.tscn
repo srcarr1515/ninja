@@ -7,21 +7,15 @@
 script = ExtResource( 1 )
 
 [node name="Spawn" type="Position2D" parent="." groups=["spawn_points"]]
-position = Vector2( 131, 534 )
-
-[node name="Spawn4" type="Position2D" parent="." groups=["spawn_points"]]
-position = Vector2( 713, 495 )
+position = Vector2( 261, 275 )
 
 [node name="Spawn2" type="Position2D" parent="." groups=["spawn_points"]]
-position = Vector2( 846, 240 )
-
-[node name="Spawn3" type="Position2D" parent="." groups=["spawn_points"]]
-position = Vector2( 151, 209 )
+position = Vector2( 714, 411 )
 
 [node name="map" parent="." instance=ExtResource( 2 )]
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 
 [node name="ShiftTimer" type="Timer" parent="."]

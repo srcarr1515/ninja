@@ -9,3 +9,4 @@ func _ready():
 	GameData.timer_label = $MainCamera/UI/Timer
 	GameData.player = get_tree().get_nodes_in_group("player")[0]
 	GameData.hp_label.text = "HP: {hp}".format({"hp": GameData.player.hurtbox.hp})
+	GameData.trap_cd_label = $MainCamera/UI/TrapCD

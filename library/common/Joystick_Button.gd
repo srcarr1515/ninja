@@ -9,7 +9,7 @@ var return_accel = 20
 var threshold = 10
 
 func _ready():
-	get_parent().visible = true
+	get_parent().visible = false
 	GameData.joystick = get_parent()
 
 func get_button_pos():

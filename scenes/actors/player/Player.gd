@@ -19,6 +19,7 @@ var move_direction
 
 export (PackedScene) var alt_atk
 export var alt_atk_range := 150
+export var max_trap_ct := 3
 export var speed:= 500
 export var dash_speed = 500
 export var walk_speed = 150
@@ -30,15 +31,19 @@ var touch_distance
 var is_swipe = false
 var is_in_touch = false
 
+var taps = 0
+
 func _ready():
 	weapon_sprite.visible = false
+	print(get_parent())
 
 func _input(event):
 	if event is InputEventScreenDrag:
 		if "position" in event && first_touch:
-			touch_distance = event.position.distance_to(first_touch)
+			touch_distance = abs(event.position.distance_to(first_touch))
 			var alpha = clamp(((tap_timer.wait_time - tap_timer.time_left)/tap_timer.wait_time)/2, 0, 0.5)
 			if alpha > 0.25:
+				taps = 0
 				GameData.joystick.set_modulate(Color(1,1,1,alpha - 0.1))
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
@@ -50,11 +55,12 @@ func _input(event):
 			GameData.joystick.position = event.position
 			first_touch = event.position
 		elif !event.is_pressed():
-			if !touch_distance || touch_distance < 5:
+			if (!touch_distance || touch_distance < 10) && taps > 0:
 				alt_attack(get_canvas_transform().affine_inverse().xform(event.position))
 			is_swipe = !tap_timer.is_stopped()
 			GameData.joystick.visible = false
 			is_in_touch = false
+			taps += 1
 
 func nearest_active_enemy():
 	var targets = get_tree().get_nodes_in_group("enemies")
@@ -71,18 +77,51 @@ func nearest_active_enemy():
 
 func alt_attack(target_position):
 	if alt_attack_cd.is_stopped():
-		var alt_atk_instance = alt_atk.instance()
+#		var turret = load("res://scenes/constructs/Turret.tscn").instance()
+#		GameData.level_map.get_node("map/floor").add_child(turret) 
+#		turret.target_group = "enemies"
+#		turret.global_position = target_position
+#		alt_attack_cd.start()
+		
+#		var trap = load("res://scenes/constructs/BearTrap.tscn").instance()
+#		GameData.level_map.get_node("map/floor").add_child(trap) 
+#		trap.global_position = target_position
+#		alt_attack_cd.start()
+		
+#		var alt_atk_instance = alt_atk.instance()
+#		alt_atk_instance.global_position = global_position
+#		if abs(global_position.distance_to(target_position)) < 64:
+#			var enemy = nearest_active_enemy()
+#			if enemy:
+#				target_position = enemy.global_position
+#		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
+#			get_tree().get_root().add_child(alt_atk_instance)
+#			var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
+#			alt_atk_instance.direction = direction_toward_enemy
+#			alt_attack_cd.start()
+		var trap_list = get_tree().get_nodes_in_group("traps")
+		var player_traps = []
+		for trap in trap_list:
+			if trap.is_in_group("player"):
+				if trap.fsm.state.name != "Dead":
+					player_traps.push_back(trap)
+		if player_traps.size() >= max_trap_ct:
+			player_traps.front().fsm.change_to("Dead")
+		var alt_atk_instance = load("res://scenes/effects/ThrowConstruct.tscn").instance()
+		var turret = load("res://scenes/constructs/Turret.tscn").instance()
+		alt_atk_instance.spawn_node = GameData.level_map.get_node("map/floor")
+		turret.target_group = "enemies"
+		alt_atk_instance.boom_instance = turret
 		alt_atk_instance.global_position = global_position
-		print(abs(global_position.distance_to(target_position)))
-		if abs(global_position.distance_to(target_position)) < 64:
-			var enemy = nearest_active_enemy()
-			if enemy:
-				target_position = enemy.global_position
-		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
-			get_tree().get_root().add_child(alt_atk_instance)
-			var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
-			alt_atk_instance.direction = direction_toward_enemy
-			alt_attack_cd.start()
+		GameData.level_map.get_node("map/floor").add_child(alt_atk_instance)
+		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
+		alt_atk_instance.direction = direction_toward_enemy
+		print(alt_atk_instance.get_parent())
+		alt_attack_cd.start()
+
+func _process(delta):
+	if !alt_attack_cd.is_stopped():
+		GameData.trap_cd_label.text = "Cooling Down: {cd}".format({"cd": alt_attack_cd.time_left})
 
 func _physics_process(delta):
 	if fsm.state.name == "Dead":
@@ -111,11 +150,11 @@ func _physics_process(delta):
 func _on_HurtBox_is_dead():
 	fsm.change_to("Dead")
 
-func _on_HurtBox_took_damage(amount):
+func _on_HurtBox_took_damage(amount, attacker):
 	GameData.hp_label.text = "HP: {hp}".format({"hp": hurtbox.hp})
 
 func _on_TapTimer_timeout():
-	pass
+	taps = 0
 
 func get_direction_name(direction):
 	var dir_name = ""
@@ -144,3 +183,7 @@ func _on_StateMachine_on_change_state(_state):
 		anim_player.play(animation)
 	elif anim_player.has_animation(_state.name):
 		anim_player.play(_state.name)
+
+
+func _on_AltAttackCD_timeout():
+	GameData.trap_cd_label.text = "Trap Ready"

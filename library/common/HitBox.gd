@@ -18,5 +18,9 @@ func _on_Area_area_entered(area):
 		if box.this != this: ## TODO: Check for ally
 			var target = box.this
 			var damage = attack_power
-			box.get_hurt(damage)
-			emit_signal("on_hit", target, damage)
+			if (this is Player || this is Enemy) && this.fsm.state.name != "Dead":
+				box.get_hurt(damage, this)
+				emit_signal("on_hit", target, damage)
+			elif !("fsm" in this):
+				box.get_hurt(damage, this)
+				emit_signal("on_hit", target, damage)

@@ -7,6 +7,10 @@ var target : Object = null
 signal target_detected(_target)
 signal no_targets_remain
 
+
+func set_disabled(is_disabled:bool):
+	get_node("Area/Shape").call_deferred("set_disabled", is_disabled)
+
 func _on_Area_area_entered(_area):
 	target = _area.get_parent().this
 	if target != this && target != null:

@@ -1,7 +1,10 @@
 extends Node2D
 
 onready var shift_timer = $ShiftTimer
-
+onready var spawn_timer = $SpawnTimer
+onready var map_floor = $map/floor
+export (Array, int) var spawn_timer_thresholds = []
+export (Array, int) var spawn_timer_wait_times = []
 var map
 var spawn_points = []
 
@@ -64,6 +67,13 @@ func choose_enemy():
 	
 
 func _on_SpawnTimer_timeout():
+	if spawn_timer_thresholds.size() > 0 && spawn_timer_thresholds.size() == spawn_timer_wait_times.size():
+		var elapsed = shift_timer.wait_time - shift_timer.time_left
+		for i in spawn_timer_thresholds.size():
+			var threshold = spawn_timer_thresholds[i]
+			if threshold && elapsed > threshold:
+				spawn_timer.set_wait_time(spawn_timer_wait_times[i])
+				spawn_timer_thresholds[i] = null
 	var spawn_point = Helpers.choose(spawn_points)
 	var enemy = choose_enemy().instance()
 	enemy.map_level = self

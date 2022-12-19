@@ -17,6 +17,8 @@ func on_exit():
 	if this.right_pivot:
 		this.right_pivot.position = Vector2.ZERO
 		this.left_pivot.position = Vector2.ZERO
+		this.right_pivot.rotation = 0
+		this.left_pivot.rotation = 0
 
 func get_cur_range():
 	if this.target:
@@ -27,6 +29,9 @@ func get_cur_range():
 func ranged():
 	if cur_range < get_cur_range() - 10:
 		fsm.change_to("Idle")
+		return
+		
+	if !this && !this.target:
 		return
 	var move_vector = (this.global_position.direction_to(this.target.global_position)).normalized()
 	this.set_flip_h(this.x_flip_on_move && move_vector.x < 0)
@@ -96,6 +101,9 @@ func _on_Timer_timeout():
 		GameData.add_escapee()
 		GameData.exit_hp_label.text = "Escaped Monsters: {ct}".format({"ct": GameData.escapee_ct})
 	if fsm.state.name == "Attack":
-		this.play_state_animation(fsm.state)
-		call_deferred(attack_type)
+		if this.target && this.target.is_in_group("player") && this.target.fsm.state.name == "Dead":
+			exit("Escape")
+		else:
+			this.play_state_animation(fsm.state)
+			call_deferred(attack_type)
 
