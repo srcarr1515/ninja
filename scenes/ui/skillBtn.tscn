@@ -4,6 +4,8 @@
 [ext_resource path="res://assets/graphics/ui/skill_icons/lightning.png" type="Texture" id=2]
 
 [node name="skillBtn" type="TouchScreenButton" groups=["skillBtns"]]
-position = Vector2( 77, 180 )
+position = Vector2( -31, -28 )
 normal = ExtResource( 2 )
 script = ExtResource( 1 )
+
+[connection signal="released" from="." to="." method="_on_skillBtn_released"]

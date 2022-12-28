@@ -17,5 +17,10 @@ skill_button_scene = ExtResource( 2 )
 
 [node name="skillBtn" parent="skillButtons" instance=ExtResource( 2 )]
 modulate = Color( 0.917647, 0.145098, 0.145098, 1 )
-position = Vector2( 129, 175 )
+position = Vector2( 134, 10 )
+skill_level = 1
+is_available = true
 is_root_btn = true
+tree_slot = Vector2( 1, 0 )
+
+[connection signal="skill_btn_pressed" from="skillButtons/skillBtn" to="skillButtons" method="_on_skillBtn_skill_btn_pressed"]
