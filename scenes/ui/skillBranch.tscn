@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="skillBranch" type="Line2D"]
+points = PoolVector2Array( 0, 0, 0, 0 )

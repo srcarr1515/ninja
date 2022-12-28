@@ -35,9 +35,11 @@ var taps = 0
 
 func _ready():
 	weapon_sprite.visible = false
-	print(get_parent())
 
 func _input(event):
+	if event is InputEventMouse:
+		if event.is_action_pressed("right_click"):
+			alt_attack(get_global_mouse_position())
 	if event is InputEventScreenDrag:
 		if "position" in event && first_touch:
 			touch_distance = abs(event.position.distance_to(first_touch))
@@ -116,7 +118,6 @@ func alt_attack(target_position):
 		GameData.level_map.get_node("map/floor").add_child(alt_atk_instance)
 		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
 		alt_atk_instance.direction = direction_toward_enemy
-		print(alt_atk_instance.get_parent())
 		alt_attack_cd.start()
 
 func _process(delta):

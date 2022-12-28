@@ -2,7 +2,6 @@ extends State
 onready var timer = $Timer
 
 func enter():
-	print("stunned")
 	this.set_physics_process(false)
 	fsm.set_physics_process(false)
 	timer.start()

@@ -86,7 +86,6 @@ func _on_HurtBox_took_damage(amount, attacker):
 	target = attacker
 	if attacker is Bullet:
 		target = attacker.this_owner
-		print("this owner: ", target)
 	if hurtbox.hp > 0:
 		var perc_hp = (float(hurtbox.hp)/float(hurtbox.max_hp)) * 100
 		health_bar.set_health_bar(perc_hp)

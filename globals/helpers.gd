@@ -21,7 +21,10 @@ func random(exclude_list=null):
 
 func choose(list):
 	var which_index = int(rand_range(0, list.size()))
-	return list[which_index]
+	if which_index <= list.size() - 1:
+		return list[which_index]
+	else:
+		return null
 
 func get_foe(foe_type, attacker_type):
 	var desired_type = foe_type

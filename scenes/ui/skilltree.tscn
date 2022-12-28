@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ui/skillButtons.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/skillBtn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ui/skillBranch.tscn" type="PackedScene" id=3]
+
+[node name="skilltree" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="skillButtons" type="Node2D" parent="."]
+script = ExtResource( 1 )
+skill_branch_scene = ExtResource( 3 )
+skill_button_scene = ExtResource( 2 )
+
+[node name="skillBranches" type="Node2D" parent="skillButtons"]
+
+[node name="skillBtn" parent="skillButtons" instance=ExtResource( 2 )]
+modulate = Color( 0.917647, 0.145098, 0.145098, 1 )
+position = Vector2( 129, 175 )
+is_root_btn = true
