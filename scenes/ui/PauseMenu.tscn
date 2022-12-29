@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/ui/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/graphics/ui/cancel.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/ui/51.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/ui/21.png" type="Texture" id=5]
+[ext_resource path="res://assets/graphics/ui/1.png" type="Texture" id=6]
+[ext_resource path="res://assets/graphics/ui/20.png" type="Texture" id=7]
+[ext_resource path="res://assets/graphics/ui/2.png" type="Texture" id=8]
+[ext_resource path="res://assets/graphics/ui/70.png" type="Texture" id=9]
+
+[node name="PauseMenu" type="Control" groups=["pausemenu"]]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -157.0
+margin_top = -239.0
+margin_right = 159.0
+margin_bottom = 26.0
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 132.0
+margin_top = 4.0
+margin_right = 185.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 25, 15 )
+theme = ExtResource( 2 )
+text = "Options"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+margin_left = 57.0
+margin_top = 84.0
+margin_right = 161.0
+margin_bottom = 124.0
+rect_scale = Vector2( 2, 2 )
+
+[node name="Retry" type="TextureButton" parent="Panel/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Play" type="TextureButton" parent="Panel/HBoxContainer"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+
+[node name="Home" type="TextureButton" parent="Panel/HBoxContainer"]
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 9 )
+
+[node name="Close" type="TextureButton" parent="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_top = -0.5
+margin_bottom = 39.5
+texture_normal = ExtResource( 3 )
+
+[connection signal="pressed" from="Panel/HBoxContainer/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Play" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_Close_pressed"]

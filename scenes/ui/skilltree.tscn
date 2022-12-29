@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/ui/skillButtons.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/skillBtn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/skillBranch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/skilltree.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/TextPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/graphics/ui/cancel.png" type="Texture" id=6]
 
-[node name="skilltree" type="Control"]
+[node name="skilltree" type="Control" groups=["skilltree"]]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 
 [node name="skillButtons" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -17,10 +22,27 @@ skill_button_scene = ExtResource( 2 )
 
 [node name="skillBtn" parent="skillButtons" instance=ExtResource( 2 )]
 modulate = Color( 0.917647, 0.145098, 0.145098, 1 )
-position = Vector2( 134, 10 )
+position = Vector2( 134, 67 )
 skill_level = 1
 is_available = true
 is_root_btn = true
 tree_slot = Vector2( 1, 0 )
 
+[node name="TextPopup" parent="." instance=ExtResource( 5 )]
+margin_left = 22.0
+margin_top = 86.0
+margin_right = 479.0
+margin_bottom = 333.0
+
+[node name="Close" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -60.0
+margin_top = 16.0
+margin_right = -20.0
+margin_bottom = 56.0
+texture_normal = ExtResource( 6 )
+
+[connection signal="info_btn_pressed" from="skillButtons/skillBtn" to="." method="_on_skillBtn_info_btn_pressed"]
 [connection signal="skill_btn_pressed" from="skillButtons/skillBtn" to="skillButtons" method="_on_skillBtn_skill_btn_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

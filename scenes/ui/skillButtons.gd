@@ -16,50 +16,25 @@ export (Array, String) var base_skill_list = [
 	"lightning",
 	"lightning",
 	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
 	"lightning"
 ]
 var skill_list = []
 export (PackedScene) var skill_branch_scene
 export (PackedScene) var skill_button_scene
 export var tree_width:= 3
-export var tree_height:= 5
+export var tree_height:= 6
 onready var skill_branches = $skillBranches
 var tree_slots = {}
 var skill_buttons
 
+signal skill_btn_pressed(btn)
+
 func _ready():
 	skill_list = base_skill_list
-#	generate_tree(skill_list.size())
-	generate_tree(11)
+	generate_tree(15)
 
-#func _process(delta):
-#	if Input.is_action_just_released("ui_select"):
-#		tree_height = 8
-#		generate_tree(13)
 
-func generate_tree(max_buttons=11):
-	max_buttons += 1
+func generate_tree(max_buttons):
 	var root_button = get_tree().get_nodes_in_group("skillBtns")[0]
 	tree_slots[root_button.tree_slot] = root_button
 	randomize()
@@ -71,14 +46,15 @@ func generate_tree(max_buttons=11):
 		var button_ct_options = [2, 3]
 		var button_ct = 0
 		if button && button.is_root_btn:
-			button_ct_options = [2,2,2,3,3,4]
+			button_ct_options = [2,3]
 		elif skill_btns_created == max_buttons:
 			button_ct_options = [0]
 		elif skill_btns_created > max_buttons * 0.75 && skill_btns_created != max_buttons:
 			button_ct_options = [1,2,2]
 		elif skill_btns_created != max_buttons:
 			button_ct_options = [2, 3]
-		else:
+		
+		if max_buttons - skill_btns_created <= 3:
 			button_ct_options = [max_buttons - skill_btns_created]
 			
 		button_ct = Helpers.choose(button_ct_options)
@@ -86,26 +62,22 @@ func generate_tree(max_buttons=11):
 		skill_btns_created = get_tree().get_nodes_in_group("skillBtns").size()
 		unresolved_buttons.pop_back()
 	setSkillBtnAvailability()
-	
-	## create buttons and branches based on picks (add to unresolved btns array)
-	## update button to keep track of the buttons its attached to
-	## while loop of unresolved btns array, the generates more buttons and branches
-	## run loop until no more buttons to resolve
 
 func generate_branched_buttons(fromBtn, buttonCt, unresolved_buttons):
 	var buttons_created = []
 	if buttonCt > 0 && skill_list.size() > 0:
 		for btn_index in buttonCt:
 			var chosen_skill = Helpers.choose(skill_list)
-			skill_list.erase(chosen_skill)
 			if !chosen_skill:
 				return buttons_created
 			var button_instance = load("res://scenes/ui/skill_buttons/{button_name}.tscn".format({"button_name": chosen_skill})).instance()
 			var path_vector_options = []
 			buttons_created.push_front(button_instance)
 			var new_btn_slot
+			var slots_checked = []
 			for path_vec in fromBtn.pathVectors:
 				new_btn_slot = fromBtn.tree_slot + path_vec
+				slots_checked.push_back(new_btn_slot)
 				if !(tree_slots.has(new_btn_slot)):
 					if(new_btn_slot.x >= 0 && new_btn_slot.x <= (tree_width - 1)):
 						if(new_btn_slot.y >= 0 && new_btn_slot.y <= (tree_height - 1)):
@@ -120,16 +92,15 @@ func generate_branched_buttons(fromBtn, buttonCt, unresolved_buttons):
 			unresolved_buttons.push_front(button_instance)
 			add_child(button_instance)
 			button_instance.connect("skill_btn_pressed", self, "_on_skillBtn_skill_btn_pressed")
+			button_instance.connect("info_btn_pressed", get_parent(), "_on_skillBtn_info_btn_pressed")
 			button_instance.connectedBtns[-spawn_vector] = fromBtn
 			button_instance.global_position = fromBtn.global_position + (spawn_vector * Vector2(fromBtn.branch_length, fromBtn.branch_length))
 			var branch = skill_branch_scene.instance()
 			skill_branches.add_child(branch)
 			branch.global_position = fromBtn.global_position + Vector2(32,32)
 			branch.points[1] = branch.to_local(button_instance.global_position + Vector2(32,32))
+			skill_list.erase(chosen_skill)
 	return buttons_created
-			
-		## spawn buttons around fromBtn
-		## store spawnedBtns in unresolved buttons array
 
 func setSkillBtnAvailability():
 	var skill_btns = get_tree().get_nodes_in_group("skillBtns")

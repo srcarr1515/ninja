@@ -1,6 +1,7 @@
 extends Node
 
 onready var graveyard = []
+var game_state
 var player_data = {}
 var player
 var joystick

@@ -37,6 +37,8 @@ func _ready():
 	weapon_sprite.visible = false
 
 func _input(event):
+	if GameData.game_state != "InGame":
+		return
 	if event is InputEventMouse:
 		if event.is_action_pressed("right_click"):
 			alt_attack(get_global_mouse_position())

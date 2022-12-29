@@ -1,11 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/ui/skillBtn.gd" type="Script" id=1]
 [ext_resource path="res://assets/graphics/ui/skill_icons/lightning.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ui/expand_grey.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 22, 22 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
 
 [node name="skillBtn" type="TouchScreenButton" groups=["skillBtns"]]
-position = Vector2( -31, -28 )
+position = Vector2( -31, -30 )
 normal = ExtResource( 2 )
+shape = SubResource( 1 )
 script = ExtResource( 1 )
 
+[node name="info" type="TouchScreenButton" parent="."]
+position = Vector2( 54, -22 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="info"]
+position = Vector2( 20, 44 )
+texture = ExtResource( 3 )
+
 [connection signal="released" from="." to="." method="_on_skillBtn_released"]
+[connection signal="released" from="info" to="." method="_on_info_released"]
