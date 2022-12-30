@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://library/common/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://library/common/DetectBox.tscn" type="PackedScene" id=2]
@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/graphics/effects/TemplateSword.png" type="Texture" id=13]
 [ext_resource path="res://scenes/actors/shared_states/Stunned.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/actors/SkillController.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/effects/Blaze.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/effects/Whirlwind.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Attack_Down"
@@ -387,6 +387,46 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=20]
+resource_name = "Spin"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 21, 29, 25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Weapon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 5, 13, 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Weapon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="Animation" id=11]
 resource_name = "Walk_Down"
 length = 0.4
@@ -529,6 +569,7 @@ anims/Idle_Left = SubResource( 15 )
 anims/Idle_Right = SubResource( 18 )
 anims/Idle_Up = SubResource( 19 )
 anims/RESET = SubResource( 10 )
+anims/Spin = SubResource( 20 )
 anims/Walk_Down = SubResource( 11 )
 anims/Walk_Left = SubResource( 12 )
 anims/Walk_Right = SubResource( 13 )
@@ -602,6 +643,7 @@ one_shot = true
 [node name="Idle" parent="StateMachine" instance=ExtResource( 6 )]
 
 [node name="Dash" parent="StateMachine" instance=ExtResource( 9 )]
+dash_skill = ExtResource( 17 )
 
 [node name="AltAct" parent="StateMachine" instance=ExtResource( 8 )]
 
@@ -612,13 +654,13 @@ one_shot = true
 [node name="Stunned" parent="StateMachine" instance=ExtResource( 14 )]
 
 [node name="SkillController" parent="." instance=ExtResource( 15 )]
-on_move_skills = [ ExtResource( 16 ) ]
 
 [node name="OnMove" parent="SkillController" index="0"]
 wait_time = 0.1
 one_shot = true
 
 [connection signal="on_move" from="." to="SkillController" method="_on_move"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="is_dead" from="HurtBox" to="." method="_on_HurtBox_is_dead"]
 [connection signal="took_damage" from="HurtBox" to="." method="_on_HurtBox_took_damage"]
 [connection signal="timeout" from="TapTimer" to="." method="_on_TapTimer_timeout"]

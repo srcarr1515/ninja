@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/effects/Effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/graphics/effects/slash.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 48.5077
+
+[node name="Whirlwind" instance=ExtResource( 1 )]
+position = Vector2( -1, 1 )
+movement_type = "on_player"
+animation_on_start = "start"
+player_animation = "Spin"
+destroy_on_timeout = "on_time_out_end"
+player_movement_type = "bullet"
+dash_speed = 100
+
+[node name="AnimationPlayer" parent="." index="0"]
+playback_speed = 1.5
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )
+
+[node name="HurtBox" parent="." index="2"]
+position = Vector2( 0, -12 )
+
+[node name="Shape" parent="HurtBox/Area" index="0"]
+shape = SubResource( 3 )
+
+[node name="Sprite" parent="." index="3"]
+position = Vector2( 0, -19 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 3
+
+[node name="Timer" parent="." index="5"]
+wait_time = 1.5
+autostart = true
+
+[editable path="HurtBox"]

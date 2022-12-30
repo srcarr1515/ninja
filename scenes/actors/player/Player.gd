@@ -139,9 +139,6 @@ func _physics_process(delta):
 		move_speed = clamp((touch_distance/200) * 10, 1, 12)
 	if input_dir:
 		if is_swipe:
-			velocity = position.direction_to(position + input_dir) * 15
-			velocity = move_and_slide(velocity * 72)
-#			var collision = move_and_collide(velocity)
 			fsm.change_to("Dash")
 		else:
 			move_speed = clamp(move_speed, 1, 3)
@@ -151,9 +148,9 @@ func _physics_process(delta):
 			fsm.change_to("Walk")
 			move_and_slide(velocity)
 			emit_signal("on_move", self)
-	else:
-		yield(anim_player, "animation_finished")
-		fsm.change_to("Idle")
+#	else:
+#		yield(anim_player, "animation_finished")
+#		fsm.change_to("Idle")
 
 func _on_HurtBox_is_dead():
 	fsm.change_to("Dead")
@@ -179,19 +176,39 @@ func get_direction_name(direction):
 	return dir_name
 
 func _on_StateMachine_on_change_state(_state):
-	var state_name = _state.name
-	if ["Dash", "AltAct"].has(_state.name):
+	set_animation_from_state_name(_state.name)
+#	var state_name = _state.name
+#	if ["Dash", "AltAct"].has(_state.name):
+#		state_name = "Attack"
+#	var animation = "{state}_{dir}".format({"state": state_name, "dir": get_direction_name(input_dir)})
+#	if _state.name == "Idle":
+#		var prev_anim = anim_player.current_animation.split("_")
+#		if prev_anim.size() > 1:
+#			anim_player.play("Idle_{dir}".format({"dir": prev_anim[1]}) )
+#	elif anim_player.has_animation(animation):
+#		anim_player.play(animation)
+#	elif anim_player.has_animation(_state.name):
+#		anim_player.play(_state.name)
+
+func set_animation_from_state_name(_state_name):
+	var state_name = _state_name
+	if ["Dash", "AltAct"].has(_state_name):
 		state_name = "Attack"
 	var animation = "{state}_{dir}".format({"state": state_name, "dir": get_direction_name(input_dir)})
-	if _state.name == "Idle":
+	if _state_name == "Idle":
 		var prev_anim = anim_player.current_animation.split("_")
 		if prev_anim.size() > 1:
 			anim_player.play("Idle_{dir}".format({"dir": prev_anim[1]}) )
 	elif anim_player.has_animation(animation):
 		anim_player.play(animation)
-	elif anim_player.has_animation(_state.name):
-		anim_player.play(_state.name)
+	elif anim_player.has_animation(_state_name):
+		anim_player.play(_state_name)
 
 
 func _on_AltAttackCD_timeout():
 	GameData.trap_cd_label.text = "Trap Ready"
+
+#func _on_AnimationPlayer_animation_finished(anim_name):
+#	if anim_name != fsm.state.name:
+#		print(fsm.state.name)
+#		set_animation_from_state_name(fsm.state.name)
