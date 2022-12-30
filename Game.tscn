@@ -79,6 +79,7 @@ margin_right = 14.0
 margin_bottom = -12.0
 
 [node name="PauseMenu" parent="MainCamera/UI" instance=ExtResource( 17 )]
+visible = false
 
 [node name="Joystick" parent="MainCamera/UI" instance=ExtResource( 10 )]
 modulate = Color( 1, 1, 1, 0.490196 )

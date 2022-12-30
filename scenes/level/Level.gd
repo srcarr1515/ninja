@@ -41,6 +41,9 @@ func get_spawn_points():
 			nodes.push_front(node)
 	return nodes
 
+func add_to_floor(instance):
+	get_node("map/floor").add_child(instance)
+
 func move_to_floor_node(actor):
 	## Use when actors are dead
 	map.call_deferred("remove_child", actor)

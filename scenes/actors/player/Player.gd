@@ -11,6 +11,7 @@ onready var hitbox := $HitBox
 onready var detectbox := $DetectBox
 onready var hurtbox := $HurtBox
 onready var weapon_sprite = $Weapon
+onready var skill_controller = $SkillController
 
 var first_touch
 var target_position
@@ -33,8 +34,11 @@ var is_in_touch = false
 
 var taps = 0
 
+signal on_move(subject)
+
 func _ready():
 	weapon_sprite.visible = false
+	skill_controller.subject = self
 
 func _input(event):
 	if GameData.game_state != "InGame":
@@ -146,6 +150,7 @@ func _physics_process(delta):
 				yield(anim_player, "animation_finished")
 			fsm.change_to("Walk")
 			move_and_slide(velocity)
+			emit_signal("on_move", self)
 	else:
 		yield(anim_player, "animation_finished")
 		fsm.change_to("Idle")
