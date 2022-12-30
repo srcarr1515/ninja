@@ -15,8 +15,6 @@ root_node = NodePath("../HurtBox")
 
 [node name="Sprite" type="Sprite" parent="."]
 
-[node name="Particles2D" type="Particles2D" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]

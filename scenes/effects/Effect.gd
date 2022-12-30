@@ -16,6 +16,10 @@ export (Array, Vector2) var randomize_scale ## randomly pick from this list.
 export (String, "bullet") var player_movement_type
 export (int) var dash_speed
 
+## Spawn Options
+
+export (Array, PackedScene) var spawn_list
+export (Array, int) var spawn_rotation
 onready var anim_player = $AnimationPlayer
 
 func _ready():
@@ -24,6 +28,14 @@ func _ready():
 			anim_player.play(animation_on_start)
 	if randomize_scale.size() > 0:
 		set_scale(Helpers.choose(randomize_scale))
+	if spawn_list.size() > 0:
+		for s in spawn_list.size():
+			var spawn = spawn_list[s].instance()
+			add_child(spawn)
+			if s <= spawn_rotation.size() - 1:
+				spawn.rotation_degrees = spawn_rotation[s]
+			if spawn is Orbiter:
+				spawn.is_orbiting = true
 
 func _physics_process(delta):
 	if movement_type == "on_player":

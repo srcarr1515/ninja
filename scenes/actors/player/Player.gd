@@ -212,7 +212,8 @@ func set_animation_from_state_name(_state_name):
 func _on_AltAttackCD_timeout():
 	GameData.trap_cd_label.text = "Trap Ready"
 
-#func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(anim_name):
+	pass
 #	if anim_name != fsm.state.name:
 #		print(fsm.state.name)
 #		set_animation_from_state_name(fsm.state.name)
