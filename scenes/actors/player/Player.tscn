@@ -390,6 +390,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id=20]
 resource_name = "Spin"
 length = 0.4
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -664,6 +665,7 @@ one_shot = true
 [connection signal="is_dead" from="HurtBox" to="." method="_on_HurtBox_is_dead"]
 [connection signal="took_damage" from="HurtBox" to="." method="_on_HurtBox_took_damage"]
 [connection signal="timeout" from="TapTimer" to="." method="_on_TapTimer_timeout"]
+[connection signal="timeout" from="DashCD" to="." method="_on_DashCD_timeout"]
 [connection signal="timeout" from="AltAttackCD" to="." method="_on_AltAttackCD_timeout"]
 [connection signal="on_change_state" from="StateMachine" to="." method="_on_StateMachine_on_change_state"]
 [connection signal="timeout" from="SkillController/OnMove" to="SkillController" method="_on_OnMove_timeout"]

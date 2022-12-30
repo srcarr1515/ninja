@@ -17,6 +17,7 @@ var first_touch
 var target_position
 var velocity:Vector2
 var move_direction
+var last_known_dir = "Down"
 
 export (PackedScene) var alt_atk
 export var alt_atk_range := 150
@@ -134,10 +135,13 @@ func _physics_process(delta):
 	if fsm.state.name == "Dead":
 		return
 	input_dir = GameData.joystick.get_node("Joystick_Button").get_value()
+	var dir = get_direction_name(input_dir)
+	if dir:
+		last_known_dir = dir
 	var move_speed = 1
 	if touch_distance:
 		move_speed = clamp((touch_distance/200) * 10, 1, 12)
-	if input_dir:
+	if input_dir && dash_cd.is_stopped():
 		if is_swipe:
 			fsm.change_to("Dash")
 		else:
@@ -148,9 +152,9 @@ func _physics_process(delta):
 			fsm.change_to("Walk")
 			move_and_slide(velocity)
 			emit_signal("on_move", self)
-#	else:
-#		yield(anim_player, "animation_finished")
-#		fsm.change_to("Idle")
+	else:
+		yield(anim_player, "animation_finished")
+		fsm.change_to("Idle")
 
 func _on_HurtBox_is_dead():
 	fsm.change_to("Dead")
@@ -212,3 +216,8 @@ func _on_AltAttackCD_timeout():
 #	if anim_name != fsm.state.name:
 #		print(fsm.state.name)
 #		set_animation_from_state_name(fsm.state.name)
+
+func _on_DashCD_timeout():
+	pass
+	## TODO: Find a better way to do this
+#	velocity = Vector2.ZERO

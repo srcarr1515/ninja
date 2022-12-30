@@ -10,6 +10,7 @@ var input_dir = Vector2.ZERO
 func enter():
 	this.hurtbox.get_node("Area/Shape").set_disabled(true)
 	this.hitbox.get_node("Area/Shape").set_disabled(false)
+	this.dash_cd.start()
 	input_dir = this.input_dir
 	if dash_skill:
 		dash_skill_instance = dash_skill.instance()
@@ -24,16 +25,17 @@ func physics_process(delta):
 		if movement_type == "dash":
 			this.velocity = this.position.direction_to(this.position + this.input_dir) * dash_speed
 			this.velocity = this.move_and_slide(this.velocity)
-	if movement_type == "bullet" && is_instance_valid(dash_skill_instance):
-		if dash_skill_instance.player_animation:
-			if this.anim_player.has_animation(dash_skill_instance.player_animation):
-				this.anim_player.play(dash_skill_instance.player_animation)
-		this.velocity = input_dir * dash_speed
-		this.move_and_slide(this.velocity)
-	if !is_instance_valid(dash_skill_instance):
-		dash_skill_instance = null
-		this.anim_player.play("Idle")
-		exit("Idle")
+	if movement_type == "bullet":
+		if is_instance_valid(dash_skill_instance):
+			if dash_skill_instance.player_animation:
+				if this.anim_player.has_animation(dash_skill_instance.player_animation):
+					this.anim_player.play(dash_skill_instance.player_animation)
+			this.velocity = input_dir * dash_speed
+			this.move_and_slide(this.velocity)
+		if !is_instance_valid(dash_skill_instance):
+			dash_skill_instance = null
+			this.anim_player.play("Idle")
+			exit("Idle")
 
 func on_exit():
 	yield(get_tree().create_timer(0.05), "timeout")
