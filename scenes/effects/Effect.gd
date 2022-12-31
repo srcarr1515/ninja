@@ -25,18 +25,29 @@ export (String, "on_ready", "on_timeout") var when_to_spawn = "on_ready"
 
 ## Misc Options
 export (int) var effect_radius
+export (String, "player", "enemies") var target_group = "enemies"
+export (String, "player", "enemy") var user_type = "player"
 
 
 onready var anim_player = $AnimationPlayer
+onready var hitbox = $HitBox
 
 func _ready():
 	if animation_on_start != "":
 		if anim_player.has_animation(animation_on_start):
 			anim_player.play(animation_on_start)
+	
+	var user_group = {
+		"player": "player",
+		"enemy": "enemies"
+	}
+	add_to_group(user_group[user_type])
+	hitbox.get_node("Area").set_collision_mask_bit(1, target_group == "player")
+	hitbox.get_node("Area").set_collision_mask_bit(2, target_group == "enemies")
+	
 	if randomize_scale.size() > 0:
 		set_scale(Helpers.choose(randomize_scale))
 	spawn()
-	
 
 func spawn():
 	if spawn_list.size() > 0:
@@ -62,7 +73,7 @@ func get_spawn_position():
 	if spawn_position_type == "custom_vector":
 		return spawn_pos_custom_vector
 	elif spawn_position_type == "nearest_enemy":
-		var target_enemy = Helpers.pick_nearest("enemies", global_position)
+		var target_enemy = Helpers.pick_nearest("enemies", global_position, "corpses")
 		if !target_enemy:
 			return
 		if effect_radius:

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/effects/Bullet.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Construct",
+"language": "GDScript",
+"path": "res://scenes/constructs/Construct.gd"
+}, {
 "base": "Node",
 "class": "Destroyer",
 "language": "GDScript",
@@ -23,6 +28,11 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scenes/actors/enemy/Enemy.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Exit",
+"language": "GDScript",
+"path": "res://scenes/level/Exit.gd"
 }, {
 "base": "Resource",
 "class": "Formation",
@@ -61,8 +71,10 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"Construct": "",
 "Destroyer": "",
 "Enemy": "",
+"Exit": "",
 "Formation": "",
 "Orbiter": "",
 "PlatformerController2D": "",

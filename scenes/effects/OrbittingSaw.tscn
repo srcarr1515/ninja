@@ -69,7 +69,11 @@ animation_on_start = "start"
 anims/RESET = SubResource( 1 )
 anims/start = SubResource( 2 )
 
-[node name="Shape" parent="Object/HurtBox/Area" index="0"]
+[node name="Area" parent="Object/HitBox" index="0"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Shape" parent="Object/HitBox/Area" index="0"]
 shape = SubResource( 3 )
 
 [node name="Sprite" parent="Object" index="1"]
@@ -78,4 +82,4 @@ texture = ExtResource( 2 )
 hframes = 8
 vframes = 3
 
-[editable path="Object/HurtBox"]
+[editable path="Object/HitBox"]

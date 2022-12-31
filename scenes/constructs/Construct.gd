@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Construct
 
 onready var anim_player = $AnimationPlayer
 onready var detectbox = $DetectBox

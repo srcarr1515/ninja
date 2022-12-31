@@ -3,6 +3,7 @@ extends Node2D
 onready var this = get_parent()
 onready var hit_area = $Area
 export var attack_power = 1
+onready var timer = $Timer
 
 signal on_hit(target, damage)
 
@@ -24,3 +25,15 @@ func _on_Area_area_entered(area):
 			elif !("fsm" in this):
 				box.get_hurt(damage, this)
 				emit_signal("on_hit", target, damage)
+
+func _on_Timer_timeout():
+	for area in hit_area.get_overlapping_areas():
+		var box = area.get_parent()
+		var target = box.this
+		var damage = attack_power
+		if (this is Player || this is Enemy) && this.fsm.state.name != "Dead":
+			box.get_hurt(damage, this)
+			emit_signal("on_hit", target, damage)
+		elif !("fsm" in this):
+			box.get_hurt(damage, this)
+			emit_signal("on_hit", target, damage)

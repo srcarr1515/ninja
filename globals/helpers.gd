@@ -1,14 +1,18 @@
 extends Node
 
-func pick_nearest(group:String, _position:Vector2):
+func pick_nearest(group:String, _position:Vector2, excluding_group=null):
 	var targets = get_tree().get_nodes_in_group(group)
 	if targets.size() < 1:
 		return
 	var nearest_target = targets.front()
 	if nearest_target:
 		for t in targets:
+			if excluding_group && t.is_in_group(excluding_group):
+				continue
 			if t.global_position.distance_to(_position) < nearest_target.global_position.distance_to(_position):
 				nearest_target = t
+	if excluding_group && nearest_target.is_in_group(excluding_group):
+		nearest_target = null
 	return nearest_target
 
 func random(exclude_list=null):

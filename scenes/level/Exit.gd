@@ -1,5 +1,5 @@
 extends StaticBody2D
-
+class_name Exit
 onready var hurtbox = $HurtBox
 onready var anim_player = $AnimationPlayer
 var is_open = false

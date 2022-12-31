@@ -66,8 +66,9 @@ func look_for_player():
 				attention_timer.start()
 
 func _on_NavTimer_timeout():
-	if target:
-		nav_agent.set_target_location(target.global_position)
+	if is_instance_valid(target):
+		if target is Player || target is Exit || target is Construct:
+			nav_agent.set_target_location(target.global_position)
 
 func _on_DetectBox_no_targets_remain():
 	pass

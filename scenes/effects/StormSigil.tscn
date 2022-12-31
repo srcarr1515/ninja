@@ -13,4 +13,4 @@ effect_radius = 200
 wait_time = 5.0
 autostart = true
 
-[editable path="HurtBox"]
+[editable path="HitBox"]

@@ -1,6 +1,8 @@
 extends State
 
 func enter():
+	this.add_to_group("corpses")
+	print("corpses")
 	this.health_bar.value = 0
 	this.health_bar.visible = false
 	this.hurtbox.set_disabled(true)

@@ -23,7 +23,7 @@ resource_name = "start"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -36,7 +36,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 48.5077
+radius = 29.2746
 
 [node name="Whirlwind" instance=ExtResource( 1 )]
 position = Vector2( -1, 1 )
@@ -48,15 +48,21 @@ player_movement_type = "bullet"
 dash_speed = 100
 
 [node name="AnimationPlayer" parent="." index="0"]
+root_node = NodePath("..")
 playback_speed = 1.5
 anims/RESET = SubResource( 1 )
 anims/start = SubResource( 2 )
 
-[node name="HurtBox" parent="." index="2"]
-position = Vector2( 0, -12 )
+[node name="Area" parent="HitBox" index="0"]
+collision_layer = 0
+collision_mask = 4
 
-[node name="Shape" parent="HurtBox/Area" index="0"]
+[node name="Shape" parent="HitBox/Area" index="0"]
 shape = SubResource( 3 )
+
+[node name="Timer" parent="HitBox" index="1"]
+wait_time = 0.25
+autostart = true
 
 [node name="Sprite" parent="." index="3"]
 position = Vector2( 0, -19 )
@@ -64,9 +70,10 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 2 )
 hframes = 4
 vframes = 3
+frame = 2
 
-[node name="Timer" parent="." index="5"]
+[node name="Timer" parent="." index="4"]
 wait_time = 1.5
 autostart = true
 
-[editable path="HurtBox"]
+[editable path="HitBox"]
