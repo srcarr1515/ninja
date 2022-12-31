@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/effects/Effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/effects/LightningBolt.tscn" type="PackedScene" id=2]
+
+[node name="StormSigil" instance=ExtResource( 1 )]
+spawn_list = [ ExtResource( 2 ) ]
+spawn_position_type = "nearest_enemy"
+when_to_spawn = "on_timeout"
+effect_radius = 200
+
+[node name="Timer" parent="." index="4"]
+wait_time = 5.0
+autostart = true
+
+[editable path="HurtBox"]
