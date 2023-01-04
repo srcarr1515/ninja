@@ -160,7 +160,9 @@ func _on_HurtBox_is_dead():
 	fsm.change_to("Dead")
 
 func _on_HurtBox_took_damage(amount, attacker):
-	GameData.hp_label.text = "HP: {hp}".format({"hp": hurtbox.hp})
+	pass
+	## Moved this to on_hp_changed
+#	GameData.hp_label.text = "HP: {hp}".format({"hp": hurtbox.hp})
 
 func _on_TapTimer_timeout():
 	taps = 0
@@ -222,3 +224,7 @@ func _on_DashCD_timeout():
 	pass
 	## TODO: Find a better way to do this
 #	velocity = Vector2.ZERO
+
+func _on_HurtBox_hp_changed(_hp):
+	if hurtbox:
+		GameData.hp_label.text = "HP: {hp}".format({"hp": hurtbox.hp})
