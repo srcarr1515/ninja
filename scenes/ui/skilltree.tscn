@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/ui/skillButtons.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/skillBtn.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://scenes/ui/skilltree.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/TextPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/graphics/ui/cancel.png" type="Texture" id=6]
+[ext_resource path="res://scenes/ui/skill_buttons/AutoCrossbow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main_theme.tres" type="Theme" id=8]
+[ext_resource path="res://assets/graphics/ui/skill_icons/skill_level_frame.png" type="Texture" id=9]
 
 [node name="skilltree" type="Control" groups=["skilltree"]]
 pause_mode = 2
@@ -15,18 +18,15 @@ script = ExtResource( 4 )
 
 [node name="skillButtons" type="Node2D" parent="."]
 script = ExtResource( 1 )
+rootSkillBtn = ExtResource( 7 )
+skill_points = 100
 skill_branch_scene = ExtResource( 3 )
 skill_button_scene = ExtResource( 2 )
 
 [node name="skillBranches" type="Node2D" parent="skillButtons"]
 
-[node name="skillBtn" parent="skillButtons" instance=ExtResource( 2 )]
-modulate = Color( 0.917647, 0.145098, 0.145098, 1 )
-position = Vector2( 134, 67 )
-skill_level = 1
-is_available = true
-is_root_btn = true
-tree_slot = Vector2( 1, 0 )
+[node name="rootBtnPosition" type="Position2D" parent="skillButtons"]
+position = Vector2( 134, 75 )
 
 [node name="TextPopup" parent="." instance=ExtResource( 5 )]
 margin_left = 22.0
@@ -43,6 +43,27 @@ margin_right = -20.0
 margin_bottom = 56.0
 texture_normal = ExtResource( 6 )
 
-[connection signal="info_btn_pressed" from="skillButtons/skillBtn" to="." method="_on_skillBtn_info_btn_pressed"]
-[connection signal="skill_btn_pressed" from="skillButtons/skillBtn" to="skillButtons" method="_on_skillBtn_skill_btn_pressed"]
+[node name="SkillPointsFrame" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.0
+margin_top = 23.0
+margin_right = -3.0
+margin_bottom = 47.0
+rect_scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 9 )
+
+[node name="SkillPoints" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -26.0
+margin_top = 23.0
+margin_right = 2.99997
+margin_bottom = 51.0
+theme = ExtResource( 8 )
+text = "100"
+align = 1
+valign = 1
+
+[connection signal="skill_btn_pressed" from="skillButtons" to="." method="_on_skillButtons_skill_btn_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]

@@ -1,12 +1,14 @@
 extends Node2D
 
+export (PackedScene) var rootSkillBtn
+
 export (Array, String) var base_skill_list = [
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
+	"AutoCrossbow",
+	"AutoCrossbow",
+	"AutoCrossbow",
+	"AutoCrossbow",
+	"AutoCrossbow",
+	"AutoCrossbow",
 	"lightning",
 	"lightning",
 	"lightning",
@@ -19,6 +21,7 @@ export (Array, String) var base_skill_list = [
 	"lightning"
 ]
 var skill_list = []
+export var skill_points := 0
 export (PackedScene) var skill_branch_scene
 export (PackedScene) var skill_button_scene
 export var tree_width:= 3
@@ -31,6 +34,16 @@ signal skill_btn_pressed(btn)
 
 func _ready():
 	skill_list = base_skill_list
+	var rootBtn = rootSkillBtn.instance()
+	rootBtn.skill_level = 1
+	add_child(rootBtn)
+	rootBtn.position = get_node("rootBtnPosition").position
+	rootBtn.connect("skill_btn_pressed", self, "_on_skillBtn_skill_btn_pressed")
+	rootBtn.connect("info_btn_pressed", get_parent(), "_on_skillBtn_info_btn_pressed")
+	rootBtn.is_available = true
+	rootBtn.is_root_btn = true
+	rootBtn.max_level = 5
+	rootBtn.tree_slot = Vector2(1,0)
 	generate_tree(15)
 
 
@@ -115,6 +128,9 @@ func setSkillBtnAvailability():
 					btn.set_modulate(Color(0.5,0.5,0.5,1))
 
 func _on_skillBtn_skill_btn_pressed(btn):
-	if btn.is_available:
+	if btn.is_available && skill_points > 0 && btn.skill_level < btn.max_level:
+		skill_points -= 1
+		skill_points = max(0, skill_points)
 		btn.level_up()
 		setSkillBtnAvailability()
+		emit_signal("skill_btn_pressed", btn)

@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/skillBtn.gd" type="Script" id=1]
-[ext_resource path="res://assets/graphics/ui/skill_icons/lightning.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/ui/skill_icons/AutoCrossbow.png" type="Texture" id=2]
 [ext_resource path="res://assets/graphics/ui/expand_grey.png" type="Texture" id=3]
+[ext_resource path="res://assets/graphics/ui/skill_icons/btn-black-bg.png" type="Texture" id=4]
+[ext_resource path="res://assets/graphics/ui/skill_icons/skill_level_frame.png" type="Texture" id=5]
+[ext_resource path="res://main_theme.tres" type="Theme" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22, 22 )
@@ -12,9 +15,13 @@ extents = Vector2( 32, 32 )
 
 [node name="skillBtn" type="TouchScreenButton" groups=["skillBtns"]]
 position = Vector2( -31, -30 )
-normal = ExtResource( 2 )
+normal = ExtResource( 4 )
 shape = SubResource( 1 )
 script = ExtResource( 1 )
+
+[node name="SkillIcon" type="Sprite" parent="."]
+position = Vector2( 32, 32 )
+texture = ExtResource( 2 )
 
 [node name="info" type="TouchScreenButton" parent="."]
 position = Vector2( 54, -22 )
@@ -24,6 +31,21 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="info"]
 position = Vector2( 20, 44 )
 texture = ExtResource( 3 )
+
+[node name="SkillLevelFrame" type="Sprite" parent="."]
+position = Vector2( 34, 68 )
+scale = Vector2( 2, 1 )
+texture = ExtResource( 5 )
+
+[node name="SkillLevel" type="Label" parent="."]
+margin_left = 11.0
+margin_top = 53.0
+margin_right = 58.0
+margin_bottom = 84.0
+theme = ExtResource( 6 )
+text = "0/20"
+align = 1
+valign = 1
 
 [connection signal="released" from="." to="." method="_on_skillBtn_released"]
 [connection signal="released" from="info" to="." method="_on_info_released"]
