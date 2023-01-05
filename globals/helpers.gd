@@ -32,6 +32,9 @@ func choose(list):
 	else:
 		return null
 
+func node_name(node):
+	return str(node.name.replace("@", "").replace(str(int(node.name)), ""))
+
 func get_foe(foe_type, attacker_type):
 	var desired_type = foe_type
 	if foe_type == "foe":

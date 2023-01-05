@@ -3,6 +3,7 @@ class_name Player
 
 onready var tap_timer := $TapTimer
 onready var dash_cd := $DashCD ## Cooldown for Dash Attack
+
 onready var alt_attack_ct := $AltAttackCT ## Charge Time for Alt Attack
 onready var alt_attack_cd := $AltAttackCD ## Cooldown for Alt Attack
 onready var fsm := $StateMachine
@@ -20,6 +21,8 @@ var move_direction
 var last_known_dir = "Down"
 
 export (PackedScene) var alt_atk
+var alt_atk_instance
+
 export var alt_atk_range := 150
 export var max_trap_ct := 3
 export var speed:= 500
@@ -110,21 +113,24 @@ func alt_attack(target_position):
 #			alt_attack_cd.start()
 		var trap_list = get_tree().get_nodes_in_group("traps")
 		var player_traps = []
+		
+		alt_atk_instance = alt_atk.instance()
+		## TODO: Edit values of alt_atk_instance
+#		print(GameData.current_skills)
+#		return
+		GameData.apply_skill_modifiers("alt_action", alt_atk_instance.name, self, "beforeAdd")
 		for trap in trap_list:
 			if trap.is_in_group("player"):
 				if trap.fsm.state.name != "Dead":
 					player_traps.push_back(trap)
 		if player_traps.size() >= max_trap_ct:
 			player_traps.front().fsm.change_to("Dead")
-		var alt_atk_instance = load("res://scenes/effects/ThrowConstruct.tscn").instance()
-		var turret = load("res://scenes/constructs/Turret.tscn").instance()
-		alt_atk_instance.spawn_node = GameData.level_map.get_node("map/floor")
-		turret.target_group = "enemies"
-		alt_atk_instance.boom_instance = turret
+		alt_atk_instance.target_group = "enemies"
 		alt_atk_instance.global_position = global_position
 		GameData.level_map.get_node("map/floor").add_child(alt_atk_instance)
-		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
-		alt_atk_instance.direction = direction_toward_enemy
+		GameData.apply_skill_modifiers("alt_action", alt_atk_instance.name, self, "afterAdd")
+#		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
+#		alt_atk_instance.direction = direction_toward_enemy
 		alt_attack_cd.start()
 
 func _process(delta):

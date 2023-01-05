@@ -8,4 +8,4 @@ movement_type = "on_player"
 spawn_list = [ ExtResource( 2 ), ExtResource( 2 ) ]
 spawn_rotation = [ 0, 180 ]
 
-[editable path="HurtBox"]
+[editable path="HitBox"]

@@ -7,6 +7,9 @@ signal close_skilltree()
 
 func _on_skillBtn_info_btn_pressed(btn):
 	text_popup.visible = true
+	var display_name = btn.display_name
+	text_popup.get_node("Title").text = display_name
+	text_popup.get_node("Description").text = btn.description
 
 func _on_Close_pressed():
 	emit_signal("close_skilltree")

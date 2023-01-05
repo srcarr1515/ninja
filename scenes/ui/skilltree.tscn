@@ -67,3 +67,5 @@ valign = 1
 
 [connection signal="skill_btn_pressed" from="skillButtons" to="." method="_on_skillButtons_skill_btn_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
+
+[editable path="TextPopup"]

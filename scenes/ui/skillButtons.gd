@@ -3,12 +3,12 @@ extends Node2D
 export (PackedScene) var rootSkillBtn
 
 export (Array, String) var base_skill_list = [
-	"AutoCrossbow",
-	"AutoCrossbow",
-	"AutoCrossbow",
-	"AutoCrossbow",
-	"AutoCrossbow",
-	"AutoCrossbow",
+	"lightning",
+	"lightning",
+	"lightning",
+	"lightning",
+	"lightning",
+	"lightning",
 	"lightning",
 	"lightning",
 	"lightning",
@@ -35,6 +35,7 @@ signal skill_btn_pressed(btn)
 func _ready():
 	skill_list = base_skill_list
 	var rootBtn = rootSkillBtn.instance()
+	rootBtn.max_level = 5
 	rootBtn.skill_level = 1
 	add_child(rootBtn)
 	rootBtn.position = get_node("rootBtnPosition").position
@@ -42,8 +43,9 @@ func _ready():
 	rootBtn.connect("info_btn_pressed", get_parent(), "_on_skillBtn_info_btn_pressed")
 	rootBtn.is_available = true
 	rootBtn.is_root_btn = true
-	rootBtn.max_level = 5
+	
 	rootBtn.tree_slot = Vector2(1,0)
+#	GameData.add_skill("alt_action", rootBtn.name, rootBtn.skill_level)
 	generate_tree(15)
 
 

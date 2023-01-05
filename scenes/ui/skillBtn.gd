@@ -1,5 +1,7 @@
 extends TouchScreenButton
 
+export (String, "dash", "skill", "buff", "alt_action") var action_type ## Tells it where it should go
+
 export var skill_level := 0 setget set_skill_level, get_skill_level
 export var is_available = false
 export var is_root_btn = false
@@ -19,6 +21,8 @@ export var description := ""
 export var display_name := ""
 export var max_level := 20
 
+export (Array, Dictionary) var level_guide = []
+
 #export var pathVectors = [
 #	Vector2(1,1),
 #	Vector2(-1,-1),
@@ -37,6 +41,7 @@ signal skill_btn_pressed(btn)
 signal info_btn_pressed(btn)
 
 func _ready():
+#	max_level = level_guide.size()
 	set_skill_level(skill_level)
 
 func _on_skillBtn_released():
@@ -48,6 +53,7 @@ func level_up():
 
 func set_skill_level(_new_level):
 	_new_level = clamp(_new_level, 0, max_level)
+	GameData.level_skill(action_type, name, _new_level)
 	if _new_level != skill_level:
 		skill_level = _new_level
 	if skill_level_label:

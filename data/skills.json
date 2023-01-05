@@ -1,0 +1,152 @@
+[
+  {
+    "Name": "AutoCrossbow",
+    "Level": 1,
+    "Subject": "self",
+    "Attribute": "max_trap_ct",
+    "Value": 3,
+    "SkillType": "alt_action",
+    "When": "beforeAdd",
+    "Description": "Craft up to {x} Auto-Crossbows."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 1,
+    "Subject": "self",
+    "Attribute": "damage",
+    "Value": 1,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "Deals {x} damage."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 1,
+    "Subject": "alt_atk_instance.hurtbox",
+    "Attribute": "max_hp",
+    "Value": 10,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "{name} hp is {x}."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 2,
+    "Subject": "self",
+    "Attribute": "max_trap_ct",
+    "Value": 4,
+    "SkillType": "alt_action",
+    "When": "beforeAdd",
+    "Description": "Craft up to {x} Auto-Crossbows."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 2,
+    "Subject": "self",
+    "Attribute": "damage",
+    "Value": 1,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "Deals {x} damage."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 2,
+    "Subject": "alt_atk_instance.hurtbox",
+    "Attribute": "max_hp",
+    "Value": 10,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "{name} hp is {x}."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 3,
+    "Subject": "self",
+    "Attribute": "damage",
+    "Value": 2,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "Deals {x} damage."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 3,
+    "Subject": "self",
+    "Attribute": "max_trap_ct",
+    "Value": 4,
+    "SkillType": "alt_action",
+    "When": "beforeAdd",
+    "Description": "Craft up to {x} Auto-Crossbows."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 1,
+    "Subject": "alt_atk_instance.hurtbox",
+    "Attribute": "max_hp",
+    "Value": 10,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "{name} hp is {x}."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 4,
+    "Subject": "self",
+    "Attribute": "damage",
+    "Value": 3,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "Deals {x} damage."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 4,
+    "Subject": "self",
+    "Attribute": "max_trap_ct",
+    "Value": 4,
+    "SkillType": "alt_action",
+    "When": "beforeAdd",
+    "Description": "Craft up to {x} Auto-Crossbows."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 4,
+    "Subject": "alt_atk_instance.hurtbox",
+    "Attribute": "max_hp",
+    "Value": 15,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "{name} hp is {x}."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 5,
+    "Subject": "self",
+    "Attribute": "damage",
+    "Value": 3,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "Deals {x} damage."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 5,
+    "Subject": "self",
+    "Attribute": "max_trap_ct",
+    "Value": 5,
+    "SkillType": "alt_action",
+    "When": "beforeAdd",
+    "Description": "Craft up to {x} Auto-Crossbows."
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 5,
+    "Subject": "alt_atk_instance.hurtbox",
+    "Attribute": "max_hp",
+    "Value": 15,
+    "SkillType": "alt_action",
+    "When": "afterAdd",
+    "Description": "{name} hp is {x}."
+  }
+]

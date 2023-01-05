@@ -8,6 +8,7 @@ export var autoplay = ""
 export var speed = 10
 export var destroy_on_collision := true
 export (String, "enemy", "player") var user_type = "player"
+export (String, "enemies", "player") var target_group = "enemies"
 export (PackedScene) var boom_scene
 var boom_instance
 var this_owner
@@ -16,8 +17,8 @@ var spawn_node
 var direction := Vector2.ZERO
 
 func _ready():
-	hitbox.get_node("Area").set_collision_mask_bit(1, user_type == "enemy")
-	hitbox.get_node("Area").set_collision_mask_bit(2, user_type == "player")
+	hitbox.get_node("Area").set_collision_mask_bit(1, target_group == "player")
+	hitbox.get_node("Area").set_collision_mask_bit(2, target_group == "enemies")
 	if autoplay != "":
 		anim_player.play(autoplay)
 
