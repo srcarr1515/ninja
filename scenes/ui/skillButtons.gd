@@ -3,7 +3,10 @@ extends Node2D
 export (String) var rootSkillBtn
 
 export (Array, String) var base_skill_list = [
-	"BladeSentry"
+	"BladeSentry",
+	"StormSigil",
+	"Blaze",
+	"Whirlwind"
 ]
 var skill_list = []
 export var skill_points := 0

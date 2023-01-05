@@ -22,6 +22,7 @@ export (Array, int) var spawn_rotation
 export (String, "custom_vector", "nearest_enemy") var spawn_position_type
 export (Vector2) var spawn_pos_custom_vector
 export (String, "on_ready", "on_timeout") var when_to_spawn = "on_ready"
+export (int) var spawn_atk_power
 
 ## Misc Options
 export (int) var effect_radius
@@ -63,9 +64,10 @@ func spawn():
 			if spawn_position != null:
 				add_child(spawn)
 				spawn.global_position = spawn_position
-				
 			if s <= spawn_rotation.size() - 1:
 				spawn.rotation_degrees = spawn_rotation[s]
+			if spawn_atk_power:
+				spawn.get_node("HitBox").attack_power = spawn_atk_power
 			if spawn is Orbiter:
 				spawn.is_orbiting = true
 

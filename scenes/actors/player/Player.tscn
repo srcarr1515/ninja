@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://library/common/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://library/common/DetectBox.tscn" type="PackedScene" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://assets/graphics/effects/TemplateSword.png" type="Texture" id=13]
 [ext_resource path="res://scenes/actors/shared_states/Stunned.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/actors/SkillController.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/skills/BladeSentry.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Attack_Down"
@@ -655,7 +654,6 @@ life_leech_percent = 0.1
 [node name="Stunned" parent="StateMachine" instance=ExtResource( 14 )]
 
 [node name="SkillController" parent="." instance=ExtResource( 15 )]
-on_player_skills = [ ExtResource( 16 ) ]
 
 [node name="OnMove" parent="SkillController" index="0"]
 wait_time = 0.1

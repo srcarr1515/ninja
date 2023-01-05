@@ -138,6 +138,7 @@ func add_skill(skill_name:String, skill_type:String):
 	var skill = load("res://scenes/skills/{skill_name}.tscn".format({
 		"skill_name": skill_name
 	}))
+	print(skill_name, ":  ", skill_type)
 	match skill_type:
 		"on_move_skill":
 			skill_controller.add_skill(skill, "on_move_skills")

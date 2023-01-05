@@ -181,15 +181,24 @@
   },
   {
     "Name": "BladeSentry",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "on_player_skill",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "BladeSentry",
     "Level": 1,
     "Subject": "instance",
     "Attribute": "spawn_list",
     "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
     "When": "beforeAdd",
-    "Description": "Gain 2 spinning saw blade sentries"
+    "Description": "Summon 2 blade sentries"
   },
   {
-    "Name": "BlaseSentry",
+    "Name": "BladeSentry",
     "Level": 1,
     "Subject": "instance",
     "Attribute": "spawn_rotation",
@@ -204,10 +213,10 @@
     "Attribute": "spawn_list",
     "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
     "When": "beforeAdd",
-    "Description": "Gain 3 spinning saw blade sentries"
+    "Description": "Summon 3 blade sentries"
   },
   {
-    "Name": "BlaseSentry",
+    "Name": "BladeSentry",
     "Level": 2,
     "Subject": "instance",
     "Attribute": "spawn_rotation",
@@ -216,30 +225,192 @@
     "Description": null
   },
   {
+    "Name": "BladeSentry",
+    "Level": 3,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
+    "When": "beforeAdd",
+    "Description": "Summon 4 blade sentries"
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 3,
+    "Subject": "instance",
+    "Attribute": "spawn_rotation",
+    "Value": "[0, 90, 180, 270]",
+    "When": "beforeAdd",
+    "Description": null
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 4,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
+    "When": "beforeAdd",
+    "Description": "Summon 5 blade sentries"
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 4,
+    "Subject": "instance",
+    "Attribute": "spawn_rotation",
+    "Value": "[0, 72, 144, 210, 282]",
+    "When": "beforeAdd",
+    "Description": null
+  },
+  {
     "Name": "Blaze",
     "Level": 0,
-    "Subject": null,
-    "Attribute": null,
-    "Value": null,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Blaze",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Blaze",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "When you move, leave a trail of fire behind you.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Blaze",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "on_move_skill",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Blaze",
+    "Level": 1,
+    "Subject": "instance.hitbox",
+    "Attribute": "attack_power",
+    "Value": 1,
+    "When": "afterAdd",
+    "Description": "Deal {x} fire damage."
+  },
+  {
+    "Name": "Blaze",
+    "Level": 1,
+    "Subject": "instance.hitbox",
+    "Attribute": "attack_power",
+    "Value": 2,
+    "When": "afterAdd",
+    "Description": "Deal {x} fire damage."
+  },
+  {
+    "Name": "Blaze",
+    "Level": 1,
+    "Subject": "instance.hitbox",
+    "Attribute": "attack_power",
+    "Value": 3,
+    "When": "afterAdd",
+    "Description": "Deal {x} fire damage."
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Storm Sigil",
     "When": null,
     "Description": null
   },
   {
     "Name": "StormSigil",
     "Level": 0,
-    "Subject": null,
-    "Attribute": null,
-    "Value": null,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Randomly strike nearby enemies with lightning bolts.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "on_player_skill",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 1,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/LightningBolt.tscn\"]",
+    "When": "afterAdd",
+    "Description": "Call 1 Lightning Bolt at a time."
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 1,
+    "Subject": "instance",
+    "Attribute": "spawn_atk_power",
+    "Value": 1,
+    "When": "afterAdd",
+    "Description": "Lightning Bolt deals {x} damage."
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 2,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/LightningBolt.tscn\", \"res://scenes/effects/LightningBolt.tscn\"]",
+    "When": "afterAdd",
+    "Description": "Call 2 Lightning Bolts at a time."
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 2,
+    "Subject": "instance",
+    "Attribute": "spawn_atk_power",
+    "Value": 1,
+    "When": "afterAdd",
+    "Description": "Lightning Bolt deals {x} damage."
+  },
+  {
+    "Name": "Whirlwind",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Whirlwind",
     "When": null,
     "Description": null
   },
   {
     "Name": "Whirlwind",
     "Level": 0,
-    "Subject": null,
-    "Attribute": null,
-    "Value": null,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Replace dash with a spinning attack that damages enemies in a small radius",
     "When": null,
     "Description": null
+  },
+  {
+    "Name": "Whirlwind",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "dash",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Whirlwind",
+    "Level": 1,
+    "Subject": "instance.hitbox",
+    "Attribute": "attack_power",
+    "Value": 1,
+    "When": "afterAdd",
+    "Description": "Deals 1 damage every 0.25 seconds"
   }
 ]

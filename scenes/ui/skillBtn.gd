@@ -43,20 +43,17 @@ signal skill_btn_pressed(btn)
 signal info_btn_pressed(btn)
 
 func _ready():
-	if is_root_btn:
-		print("skill_name: ", skill_name)
 #	max_level = level_guide.size()
-	set_skill_level(skill_level)
 	var skill_data = GameData.get_skill_data(skill_name, 0)
-	if is_root_btn:
-		print("skill data: ", skill_data)
 	if skill_data != null:
 		## Set description/display name based off of a Level 0 configuration in skill_data
 		for item in skill_data:
 			set(item["Attribute"], item["Value"])
+		max_level = int(GameData.skill_data[skill_name].keys().max())
 	if skill_name != "":
 		skill_icon.set_texture(load("res://assets/graphics/ui/skill_icons/{skill_name}.png".format({"skill_name": skill_name})))
-
+	set_skill_level(skill_level)
+		
 func _on_skillBtn_released():
 	emit_signal("skill_btn_pressed", self)
 

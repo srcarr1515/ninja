@@ -45,6 +45,8 @@ func load_skill_data():
 			skill_data[skill_name] = {}
 		if !skill_data[skill_name].has(level):
 			skill_data[skill_name][level] = []
+		if typeof(modifier["Value"]) == TYPE_STRING && (modifier["Value"][0] == "{" || modifier["Value"][0] == "["):
+			modifier["Value"] = parse_json(str(modifier["Value"]))
 		skill_data[skill_name][level].push_front(modifier)
 
 func add_escapee():
@@ -78,13 +80,17 @@ func get_skill_data(skill_name, skill_level):
 
 func apply_skill_modifiers(skill_name, node, when, instance):
 	## Cleanse @ and numbers from string
+#	print("applying modifiers...")
 	skill_name = str(skill_name.replace("@", "").replace(str(int(skill_name)), ""))
+#	print("skill_name: ", skill_name)
 	var skill_data = GameData.current_skills[skill_name]
+#	print("skill data: ", skill_data)
 	if !GameData.skill_data[skill_name].has(str(skill_data["skill_level"])):
 		print(skill_data)
 		print(GameData.skill_data[skill_name].keys(), " does not contain: ", str(skill_data["skill_level"]))
 		return
 	var skill_modifiers = GameData.skill_data[skill_name][str(skill_data["skill_level"])]
+#	print("modifiers: ", skill_modifiers)
 	for modifier in skill_modifiers:
 		if modifier["When"] != when:
 			continue
@@ -100,8 +106,16 @@ func apply_skill_modifiers(skill_name, node, when, instance):
 			subject = instance
 		else:
 			subject = node.get(modifier["Subject"])
-		
 		if subject:
+#			print(modifier["Value"])
+			if typeof(modifier["Value"]) == TYPE_ARRAY:
+				var new_arr = []
+				for arr_item in modifier["Value"]:
+					if typeof(arr_item) == TYPE_STRING && arr_item.find("res://") != -1:
+						new_arr.push_front(load(arr_item))
+					else:
+						new_arr.push_front(arr_item)
+				modifier["Value"] = new_arr
 			subject.set(modifier["Attribute"], modifier["Value"])
 		else:
 			print("subject: {subject} not found.".format({"subject": modifier["Subject"]}))
