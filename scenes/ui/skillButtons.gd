@@ -1,24 +1,9 @@
 extends Node2D
 
-export (PackedScene) var rootSkillBtn
+export (String) var rootSkillBtn
 
 export (Array, String) var base_skill_list = [
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning",
-	"lightning"
+	"BladeSentry"
 ]
 var skill_list = []
 export var skill_points := 0
@@ -34,15 +19,17 @@ signal skill_btn_pressed(btn)
 
 func _ready():
 	skill_list = base_skill_list
-	var rootBtn = rootSkillBtn.instance()
+	var rootBtn = load("res://scenes/ui/skillBtn.tscn").instance()
+	rootBtn.skill_name = "AutoCrossbow"
 	rootBtn.max_level = 5
 	rootBtn.skill_level = 1
+	rootBtn.is_available = true
+	rootBtn.is_root_btn = true
 	add_child(rootBtn)
 	rootBtn.position = get_node("rootBtnPosition").position
 	rootBtn.connect("skill_btn_pressed", self, "_on_skillBtn_skill_btn_pressed")
 	rootBtn.connect("info_btn_pressed", get_parent(), "_on_skillBtn_info_btn_pressed")
-	rootBtn.is_available = true
-	rootBtn.is_root_btn = true
+
 	
 	rootBtn.tree_slot = Vector2(1,0)
 #	GameData.add_skill("alt_action", rootBtn.name, rootBtn.skill_level)
@@ -85,7 +72,8 @@ func generate_branched_buttons(fromBtn, buttonCt, unresolved_buttons):
 			var chosen_skill = Helpers.choose(skill_list)
 			if !chosen_skill:
 				return buttons_created
-			var button_instance = load("res://scenes/ui/skill_buttons/{button_name}.tscn".format({"button_name": chosen_skill})).instance()
+			var button_instance = load("res://scenes/ui/skillBtn.tscn").instance()
+			button_instance.skill_name = chosen_skill
 			var path_vector_options = []
 			buttons_created.push_front(button_instance)
 			var new_btn_slot

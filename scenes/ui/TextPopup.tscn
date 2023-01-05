@@ -15,7 +15,6 @@ size = 13
 font_data = ExtResource( 5 )
 
 [node name="TextPopup" type="Popup"]
-visible = true
 margin_left = -157.0
 margin_top = -192.0
 margin_right = 152.0

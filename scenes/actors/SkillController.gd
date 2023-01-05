@@ -11,6 +11,14 @@ func _ready():
 	yield(get_tree(),"idle_frame")
 	activate_on_player_skills()
 
+func add_skill(skill_scene:PackedScene, skill_list_name:String):
+	var skill_list = get(skill_list_name)
+	if !skill_list.has(skill_scene):
+		skill_list.push_front(skill_scene)
+		set(skill_list_name, skill_list)
+	else:
+		print("Skill already exists...")
+		
 func activate_on_player_skills():
 	for skill in on_player_skills:
 		if !on_player_active.has(skill):

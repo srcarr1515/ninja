@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/skillButtons.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/skillBtn.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/ui/skilltree.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ui/TextPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/graphics/ui/cancel.png" type="Texture" id=6]
-[ext_resource path="res://scenes/ui/skill_buttons/AutoCrossbow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://main_theme.tres" type="Theme" id=8]
 [ext_resource path="res://assets/graphics/ui/skill_icons/skill_level_frame.png" type="Texture" id=9]
 
@@ -18,7 +17,7 @@ script = ExtResource( 4 )
 
 [node name="skillButtons" type="Node2D" parent="."]
 script = ExtResource( 1 )
-rootSkillBtn = ExtResource( 7 )
+rootSkillBtn = "AutoCrossbow"
 skill_points = 100
 skill_branch_scene = ExtResource( 3 )
 skill_button_scene = ExtResource( 2 )

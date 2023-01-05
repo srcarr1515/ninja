@@ -5,7 +5,6 @@
     "Subject": "self",
     "Attribute": "display_name",
     "Value": "Auto-Crossbow",
-    "SkillType": "alt_action",
     "When": null,
     "Description": null
   },
@@ -15,7 +14,15 @@
     "Subject": "self",
     "Attribute": "description",
     "Value": "Craft an auto-firing crossbow turret.",
-    "SkillType": "alt_action",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action",
     "When": null,
     "Description": null
   },
@@ -25,7 +32,6 @@
     "Subject": "self",
     "Attribute": "max_trap_ct",
     "Value": 3,
-    "SkillType": "alt_action",
     "When": "beforeAdd",
     "Description": "Craft up to {x} Auto-Crossbows."
   },
@@ -35,7 +41,6 @@
     "Subject": "self",
     "Attribute": "damage",
     "Value": 1,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "Deals {x} damage."
   },
@@ -45,7 +50,6 @@
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 10,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "{name} hp is {x}."
   },
@@ -55,7 +59,6 @@
     "Subject": "self",
     "Attribute": "max_trap_ct",
     "Value": 4,
-    "SkillType": "alt_action",
     "When": "beforeAdd",
     "Description": "Craft up to {x} Auto-Crossbows."
   },
@@ -65,7 +68,6 @@
     "Subject": "self",
     "Attribute": "damage",
     "Value": 1,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "Deals {x} damage."
   },
@@ -75,7 +77,6 @@
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 10,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "{name} hp is {x}."
   },
@@ -85,7 +86,6 @@
     "Subject": "self",
     "Attribute": "damage",
     "Value": 2,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "Deals {x} damage."
   },
@@ -95,7 +95,6 @@
     "Subject": "self",
     "Attribute": "max_trap_ct",
     "Value": 4,
-    "SkillType": "alt_action",
     "When": "beforeAdd",
     "Description": "Craft up to {x} Auto-Crossbows."
   },
@@ -105,7 +104,6 @@
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 10,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "{name} hp is {x}."
   },
@@ -115,7 +113,6 @@
     "Subject": "self",
     "Attribute": "damage",
     "Value": 3,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "Deals {x} damage."
   },
@@ -125,7 +122,6 @@
     "Subject": "self",
     "Attribute": "max_trap_ct",
     "Value": 4,
-    "SkillType": "alt_action",
     "When": "beforeAdd",
     "Description": "Craft up to {x} Auto-Crossbows."
   },
@@ -135,7 +131,6 @@
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 15,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "{name} hp is {x}."
   },
@@ -145,7 +140,6 @@
     "Subject": "self",
     "Attribute": "damage",
     "Value": 3,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "Deals {x} damage."
   },
@@ -155,7 +149,6 @@
     "Subject": "self",
     "Attribute": "max_trap_ct",
     "Value": 5,
-    "SkillType": "alt_action",
     "When": "beforeAdd",
     "Description": "Craft up to {x} Auto-Crossbows."
   },
@@ -165,8 +158,88 @@
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 15,
-    "SkillType": "alt_action",
     "When": "afterAdd",
     "Description": "{name} hp is {x}."
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Blade Sentry",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Summon orbiting saw blades that damage nearby enemies.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 1,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
+    "When": "beforeAdd",
+    "Description": "Gain 2 spinning saw blade sentries"
+  },
+  {
+    "Name": "BlaseSentry",
+    "Level": 1,
+    "Subject": "instance",
+    "Attribute": "spawn_rotation",
+    "Value": "[0, 180]",
+    "When": "beforeAdd",
+    "Description": null
+  },
+  {
+    "Name": "BladeSentry",
+    "Level": 2,
+    "Subject": "instance",
+    "Attribute": "spawn_list",
+    "Value": "[\"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\", \"res://scenes/effects/OrbittingSaw.tscn\"]",
+    "When": "beforeAdd",
+    "Description": "Gain 3 spinning saw blade sentries"
+  },
+  {
+    "Name": "BlaseSentry",
+    "Level": 2,
+    "Subject": "instance",
+    "Attribute": "spawn_rotation",
+    "Value": "[0, 120, 240]",
+    "When": "beforeAdd",
+    "Description": null
+  },
+  {
+    "Name": "Blaze",
+    "Level": 0,
+    "Subject": null,
+    "Attribute": null,
+    "Value": null,
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "StormSigil",
+    "Level": 0,
+    "Subject": null,
+    "Attribute": null,
+    "Value": null,
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Whirlwind",
+    "Level": 0,
+    "Subject": null,
+    "Attribute": null,
+    "Value": null,
+    "When": null,
+    "Description": null
   }
 ]

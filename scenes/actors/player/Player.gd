@@ -118,7 +118,7 @@ func alt_attack(target_position):
 		## TODO: Edit values of alt_atk_instance
 #		print(GameData.current_skills)
 #		return
-		GameData.apply_skill_modifiers("alt_action", alt_atk_instance.name, self, "beforeAdd")
+		GameData.apply_skill_modifiers(alt_atk_instance.name, self, "beforeAdd", alt_atk_instance)
 		for trap in trap_list:
 			if trap.is_in_group("player"):
 				if trap.fsm.state.name != "Dead":
@@ -128,10 +128,33 @@ func alt_attack(target_position):
 		alt_atk_instance.target_group = "enemies"
 		alt_atk_instance.global_position = global_position
 		GameData.level_map.get_node("map/floor").add_child(alt_atk_instance)
-		GameData.apply_skill_modifiers("alt_action", alt_atk_instance.name, self, "afterAdd")
+		GameData.apply_skill_modifiers(alt_atk_instance.name, self, "afterAdd", alt_atk_instance)
 #		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
 #		alt_atk_instance.direction = direction_toward_enemy
 		alt_attack_cd.start()
+
+func add_skill(skill_name:String, skill_type:String):
+	skill_name = str(skill_name.replace("@", "").replace(str(int(skill_name)), ""))
+	var skill = load("res://scenes/skills/{skill_name}.tscn".format({
+		"skill_name": skill_name
+	}))
+	match skill_type:
+		"on_move_skill":
+			skill_controller.add_skill(skill, "on_move_skills")
+		"on_player_skill":
+			skill_controller.add_skill(skill, "on_player_skills")
+		"dash":
+			fsm.get_node("Dash").dash_skill = skill
+		"alt_action":
+			alt_atk = skill
+		"buff":
+			pass
+		_:
+			print(skill_type, " not supported")
+		
+	
+	
+
 
 func _process(delta):
 	if !alt_attack_cd.is_stopped():

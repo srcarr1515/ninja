@@ -21,14 +21,12 @@ var current_skills = {}
 func _ready():
 	load_skill_data()
 
-func level_skill(skill_type, skill_name, skill_level):
+func level_skill(skill_name, skill_level):
 	skill_name = str(skill_name.replace("@", "").replace(str(int(skill_name)), ""))
 	## TODO: Replace existing skill for alt_action (can only be one)
-	if !current_skills.has(skill_type):
-		current_skills[skill_type] = {}
-	if !current_skills[skill_type].has(skill_name):
-		current_skills[skill_type][skill_name] = {"skill_name": skill_name, "skill_level": 0}
-	current_skills[skill_type][skill_name]["skill_level"] = skill_level
+	if !current_skills.has(skill_name):
+		current_skills[skill_name] = {"skill_name": skill_name, "skill_level": 0}
+	current_skills[skill_name]["skill_level"] = skill_level
 
 func load_json_data(filename):
 	var path = "res://data/skills.json"
@@ -43,14 +41,11 @@ func load_skill_data():
 	for modifier in data:
 		var skill_name = modifier["Name"]
 		var level = str(modifier["Level"])
-		var skill_type = modifier["SkillType"]
-		if !skill_data.has(skill_type):
-			skill_data[modifier["SkillType"]] = {}
-		if !skill_data[skill_type].has(skill_name):
-			skill_data[skill_type][skill_name] = {}
-		if !skill_data[skill_type][skill_name].has(level):
-			skill_data[skill_type][skill_name][level] = []
-		skill_data[skill_type][skill_name][level].push_front(modifier)
+		if !skill_data.has(skill_name):
+			skill_data[skill_name] = {}
+		if !skill_data[skill_name].has(level):
+			skill_data[skill_name][level] = []
+		skill_data[skill_name][level].push_front(modifier)
 
 func add_escapee():
 	escapee_ct += 1
@@ -73,23 +68,23 @@ func remove_grave(_target):
 func purge_graveyard():
 	graveyard = []
 
-func get_skill_data(skill_type, skill_name, skill_level):
+func get_skill_data(skill_name, skill_level):
 	skill_name = str(skill_name.replace("@", "").replace(str(int(skill_name)), ""))
-	if !GameData.skill_data.has(skill_type):
+	if !GameData.skill_data.has(skill_name):
 		return null
-	if !GameData.skill_data[skill_type][skill_name].has(str(skill_level)):
+	if !GameData.skill_data[skill_name].has(str(skill_level)):
 		return null
-	return GameData.skill_data[skill_type][skill_name][str(skill_level)]
+	return GameData.skill_data[skill_name][str(skill_level)]
 
-func apply_skill_modifiers(skill_type, skill_name, node, when):
+func apply_skill_modifiers(skill_name, node, when, instance):
 	## Cleanse @ and numbers from string
 	skill_name = str(skill_name.replace("@", "").replace(str(int(skill_name)), ""))
-	var skill_data = GameData.current_skills[skill_type][skill_name]
-	if !GameData.skill_data[skill_type][skill_name].has(str(skill_data["skill_level"])):
+	var skill_data = GameData.current_skills[skill_name]
+	if !GameData.skill_data[skill_name].has(str(skill_data["skill_level"])):
 		print(skill_data)
-		print(GameData.skill_data[skill_type][skill_name].keys(), " does not contain: ", str(skill_data["skill_level"]))
+		print(GameData.skill_data[skill_name].keys(), " does not contain: ", str(skill_data["skill_level"]))
 		return
-	var skill_modifiers = GameData.skill_data[skill_type][skill_name][str(skill_data["skill_level"])]
+	var skill_modifiers = GameData.skill_data[skill_name][str(skill_data["skill_level"])]
 	for modifier in skill_modifiers:
 		if modifier["When"] != when:
 			continue
@@ -101,6 +96,8 @@ func apply_skill_modifiers(skill_type, skill_name, node, when):
 			subject = subject.get(subject_arr[1])
 		elif modifier["Subject"] == "self":
 			subject = node
+		elif modifier["Subject"] == "instance":
+			subject = instance
 		else:
 			subject = node.get(modifier["Subject"])
 		

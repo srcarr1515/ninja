@@ -3,5 +3,4 @@
 [ext_resource path="res://scenes/ui/skillBtn.tscn" type="PackedScene" id=1]
 
 [node name="AutoCrossbow" instance=ExtResource( 1 )]
-action_type = "alt_action"
 max_level = 5
