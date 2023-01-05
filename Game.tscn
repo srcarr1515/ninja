@@ -56,6 +56,9 @@ position = Vector2( 509, 148 )
 [node name="Player" parent="Stage/Level/map" index="2" instance=ExtResource( 5 )]
 position = Vector2( 111, 376 )
 
+[node name="SpawnTimer" parent="Stage/Level" index="3"]
+autostart = false
+
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 362, 739 )
 current = true

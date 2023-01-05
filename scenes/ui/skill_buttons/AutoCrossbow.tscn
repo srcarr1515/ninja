@@ -4,6 +4,4 @@
 
 [node name="AutoCrossbow" instance=ExtResource( 1 )]
 action_type = "alt_action"
-description = "Craft an auto-firing crossbow turret."
-display_name = "Auto-Crossbow"
 max_level = 5

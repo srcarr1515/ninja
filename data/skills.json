@@ -1,6 +1,26 @@
 [
   {
     "Name": "AutoCrossbow",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Auto-Crossbow",
+    "SkillType": "alt_action",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "AutoCrossbow",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Craft an auto-firing crossbow turret.",
+    "SkillType": "alt_action",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "AutoCrossbow",
     "Level": 1,
     "Subject": "self",
     "Attribute": "max_trap_ct",
@@ -81,7 +101,7 @@
   },
   {
     "Name": "AutoCrossbow",
-    "Level": 1,
+    "Level": 3,
     "Subject": "alt_atk_instance.hurtbox",
     "Attribute": "max_hp",
     "Value": 10,
