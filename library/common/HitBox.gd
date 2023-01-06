@@ -5,7 +5,8 @@ onready var hit_area = $Area
 export var attack_power = 1
 onready var timer = $Timer
 
-export (float) var life_leech_percent := 0.0
+var life_leech_percent := 100
+export var life_leech_perc := 0
 
 signal on_hit(target, damage)
 
@@ -31,10 +32,12 @@ func deal_damage(area):
 				box.get_hurt(damage, this)
 				emit_signal("on_hit", target, damage)
 			## Life Leech
-			if life_leech_percent > 0.0:
+			if life_leech_perc > 0:
+				print('should leech')
 				var hurtbox = this.get_node_or_null("HurtBox")
 				if hurtbox:
-					var hp_stolen = damage * life_leech_percent 
+					var hp_stolen = damage * (life_leech_perc * 0.01)
+					print("leeching: ", hp_stolen, " ", life_leech_perc, " ", (life_leech_perc * 0.01))
 					## Is triggering twice? Need to check into that.
 					hurtbox.hp += hp_stolen
 

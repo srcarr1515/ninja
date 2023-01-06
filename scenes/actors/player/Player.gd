@@ -13,6 +13,7 @@ onready var detectbox := $DetectBox
 onready var hurtbox := $HurtBox
 onready var weapon_sprite = $Weapon
 onready var skill_controller = $SkillController
+onready var buff_controller = $BuffController
 
 var first_touch
 var target_position
@@ -138,7 +139,6 @@ func add_skill(skill_name:String, skill_type:String):
 	var skill = load("res://scenes/skills/{skill_name}.tscn".format({
 		"skill_name": skill_name
 	}))
-	print(skill_name, ":  ", skill_type)
 	match skill_type:
 		"on_move_skill":
 			skill_controller.add_skill(skill, "on_move_skills")
@@ -148,14 +148,8 @@ func add_skill(skill_name:String, skill_type:String):
 			fsm.get_node("Dash").dash_skill = skill
 		"alt_action":
 			alt_atk = skill
-		"buff":
-			pass
 		_:
 			print(skill_type, " not supported")
-		
-	
-	
-
 
 func _process(delta):
 	if !alt_attack_cd.is_stopped():

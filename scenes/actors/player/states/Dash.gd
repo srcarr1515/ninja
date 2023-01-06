@@ -11,7 +11,6 @@ var input_dir = Vector2.ZERO
 func enter():
 	this.hurtbox.get_node("Area/Shape").set_disabled(true)
 	this.hitbox.get_node("Area/Shape").set_disabled(false)
-	this.hitbox.life_leech_percent = life_leech_percent
 	this.dash_cd.start()
 	input_dir = this.input_dir
 	if dash_skill:
@@ -27,7 +26,7 @@ func enter():
 		var _hitbox = dash_skill_instance.get_node_or_null("HitBox")
 		if _hitbox:
 			_hitbox.this = this
-			_hitbox.life_leech_percent = life_leech_percent
+			_hitbox.life_leech_perc = this.hitbox.life_leech_perc
 
 func physics_process(delta):
 	if this.input_dir:

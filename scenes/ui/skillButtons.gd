@@ -6,7 +6,8 @@ export (Array, String) var base_skill_list = [
 	"BladeSentry",
 	"StormSigil",
 	"Blaze",
-	"Whirlwind"
+	"Whirlwind",
+	"LifeLeech"
 ]
 var skill_list = []
 export var skill_points := 0

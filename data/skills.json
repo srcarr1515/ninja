@@ -448,5 +448,59 @@
     "Value": 2,
     "When": "afterAdd",
     "Description": "Deals {x} damage every 0.25 seconds"
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Life Leech",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Steal enemy HP when using dash attack.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 1,
+    "Subject": "this.hitbox",
+    "Attribute": "life_leech_perc",
+    "Value": 5,
+    "When": null,
+    "Description": "Steal {x}% HP per hit."
+  },
+  {
+    "Name": "LifeLeech",
+    "Level": 2,
+    "Subject": "this.hitbox",
+    "Attribute": "life_leech_perc",
+    "Value": 50,
+    "When": null,
+    "Description": "Steal {x}% HP per hit."
   }
 ]
