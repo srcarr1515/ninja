@@ -7,6 +7,10 @@ export var animation_on_start := ""
 export (String) var player_animation
 
 ## Timer Options
+export var timer_wait_time:= 0.5
+export var timer_autostart:= false
+onready var timer = $Timer
+
 export (String, "on_time_out_start", "on_time_out_end") var destroy_on_timeout
 
 ## Size/Scale Options
@@ -34,6 +38,8 @@ onready var anim_player = $AnimationPlayer
 onready var hitbox = $HitBox
 
 func _ready():
+	if timer_autostart:
+		timer.start(timer_wait_time)
 	if animation_on_start != "":
 		if anim_player.has_animation(animation_on_start):
 			anim_player.play(animation_on_start)

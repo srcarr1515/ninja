@@ -290,6 +290,15 @@
   {
     "Name": "Blaze",
     "Level": 1,
+    "Subject": "instance",
+    "Attribute": "timer_wait_time",
+    "Value": 0.5,
+    "When": "beforeAdd",
+    "Description": "Fire duration is {x} second(s)"
+  },
+  {
+    "Name": "Blaze",
+    "Level": 1,
     "Subject": "instance.hitbox",
     "Attribute": "attack_power",
     "Value": 1,
@@ -298,7 +307,16 @@
   },
   {
     "Name": "Blaze",
-    "Level": 1,
+    "Level": 2,
+    "Subject": "instance",
+    "Attribute": "timer_wait_time",
+    "Value": 1,
+    "When": "beforeAdd",
+    "Description": "Fire duration is {x} second(s)"
+  },
+  {
+    "Name": "Blaze",
+    "Level": 2,
     "Subject": "instance.hitbox",
     "Attribute": "attack_power",
     "Value": 2,
@@ -307,12 +325,21 @@
   },
   {
     "Name": "Blaze",
-    "Level": 1,
+    "Level": 3,
     "Subject": "instance.hitbox",
     "Attribute": "attack_power",
     "Value": 3,
     "When": "afterAdd",
     "Description": "Deal {x} fire damage."
+  },
+  {
+    "Name": "Blaze",
+    "Level": 3,
+    "Subject": "instance",
+    "Attribute": "timer_wait_time",
+    "Value": 2,
+    "When": "beforeAdd",
+    "Description": "Fire duration is {x} second(s)"
   },
   {
     "Name": "StormSigil",
@@ -411,6 +438,15 @@
     "Attribute": "attack_power",
     "Value": 1,
     "When": "afterAdd",
-    "Description": "Deals 1 damage every 0.25 seconds"
+    "Description": "Deals {x} damage every 0.25 seconds"
+  },
+  {
+    "Name": "Whirlwind",
+    "Level": 2,
+    "Subject": "instance.hitbox",
+    "Attribute": "attack_power",
+    "Value": 2,
+    "When": "afterAdd",
+    "Description": "Deals {x} damage every 0.25 seconds"
   }
 ]

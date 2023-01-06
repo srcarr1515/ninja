@@ -75,8 +75,9 @@ func _on_DetectBox_no_targets_remain():
 
 func _on_DetectBox_target_detected(_target):
 	if fsm.state.name == "Chase" || fsm.state.name == "Escape":
-		target = _target
-		fsm.change_to("Attack")
+		if target is Player || target is Exit:
+			target = _target
+			fsm.change_to("Attack")
 
 func _on_HurtBox_is_dead():
 	pass
@@ -84,7 +85,8 @@ func _on_HurtBox_is_dead():
 func _on_HurtBox_took_damage(amount, attacker):
 	if fsm.state.name == "Dead":
 		return
-	target = attacker
+	if attacker is Player:
+		target = attacker
 	if attacker is Bullet:
 		target = attacker.this_owner
 	if hurtbox.hp > 0:

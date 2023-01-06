@@ -98,7 +98,10 @@ func apply_skill_modifiers(skill_name, node, when, instance):
 		if modifier["Subject"].find(".") != -1:
 			## Contains a '.'
 			var subject_arr = modifier["Subject"].split(".")
-			subject = node.get(subject_arr[0])
+			if subject_arr[0] == "instance":
+				subject = instance
+			else:
+				subject = node.get(subject_arr[0])
 			subject = subject.get(subject_arr[1])
 		elif modifier["Subject"] == "self":
 			subject = node

@@ -45,6 +45,8 @@ func _on_move(subject):
 func _on_OnMove_timeout():
 	for move_skill in on_move_skills:
 		var effect = move_skill.instance()
+		GameData.apply_skill_modifiers(effect.name, self, "beforeAdd", effect)
 		GameData.level_map.add_child(effect)
+		GameData.apply_skill_modifiers(effect.name, self, "afterAdd", effect)
 		effect.global_position = subject.global_position
 		subject.z_index = effect.z_index + 1

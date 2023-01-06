@@ -17,11 +17,13 @@ func enter():
 	if dash_skill:
 		dash_skill_instance = dash_skill.instance()
 		this.hitbox.get_node("Area/Shape").set_disabled(true)
+		GameData.apply_skill_modifiers(dash_skill_instance.name, self, "beforeAdd", dash_skill_instance)
 		if dash_skill_instance.player_movement_type:
 			movement_type = dash_skill_instance.player_movement_type
 		if dash_skill_instance.dash_speed:
 			dash_speed = dash_skill_instance.dash_speed
 		this.add_child(dash_skill_instance)
+		GameData.apply_skill_modifiers(dash_skill_instance.name, self, "afterAdd", dash_skill_instance)
 		var _hitbox = dash_skill_instance.get_node_or_null("HitBox")
 		if _hitbox:
 			_hitbox.this = this
