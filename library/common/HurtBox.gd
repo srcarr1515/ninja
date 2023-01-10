@@ -20,6 +20,11 @@ func get_hp():
 func _ready():
 	set_hp(max_hp)
 
+func set_max_hp(_hp):
+	print("setting maxhp: ", _hp)
+	max_hp = _hp
+	set_hp(_hp)
+
 func set_disabled(is_disabled:bool):
 	get_node("Area/Shape").call_deferred("set_disabled", is_disabled)
 

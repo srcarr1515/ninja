@@ -52,6 +52,7 @@ func ranged():
 func shoot():
 	var arrow = load("res://scenes/effects/Arrow.tscn").instance()
 	arrow.user_type = "enemy"
+	arrow.target_group = "player"
 	arrow.this_owner = this
 	arrow.add_to_group(this.name)
 	get_tree().get_root().add_child(arrow)

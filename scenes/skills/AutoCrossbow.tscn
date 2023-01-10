@@ -305,3 +305,4 @@ script = ExtResource( 3 )
 [editable path="HitBox"]
 [editable path="HurtBox"]
 [editable path="DetectBox"]
+[editable path="BuffController"]

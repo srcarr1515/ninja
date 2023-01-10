@@ -7,6 +7,7 @@ onready var dash_cd := $DashCD ## Cooldown for Dash Attack
 onready var alt_attack_ct := $AltAttackCT ## Charge Time for Alt Attack
 onready var alt_attack_cd := $AltAttackCD ## Cooldown for Alt Attack
 onready var fsm := $StateMachine
+onready var dash_state := $StateMachine/Dash
 onready var anim_player := $AnimationPlayer
 onready var hitbox := $HitBox
 onready var detectbox := $DetectBox
@@ -14,6 +15,7 @@ onready var hurtbox := $HurtBox
 onready var weapon_sprite = $Weapon
 onready var skill_controller = $SkillController
 onready var buff_controller = $BuffController
+var alt_action_buffs = []
 
 var first_touch
 var target_position
@@ -21,7 +23,7 @@ var velocity:Vector2
 var move_direction
 var last_known_dir = "Down"
 
-export (PackedScene) var alt_atk
+var alt_atk = load("res://scenes/skills/AutoCrossbow.tscn")
 var alt_atk_instance
 
 export var alt_atk_range := 150
@@ -88,33 +90,18 @@ func nearest_active_enemy():
 		return null
 	return nearest_target
 
+func add_alt_action_buff(_name, _level, _subtype):
+	alt_action_buffs.push_back({
+		"name": _name,
+		"skill_level": _level,
+		"subtype": _subtype
+	})
+
 func alt_attack(target_position):
 	if alt_attack_cd.is_stopped():
-#		var turret = load("res://scenes/constructs/Turret.tscn").instance()
-#		GameData.level_map.get_node("map/floor").add_child(turret) 
-#		turret.target_group = "enemies"
-#		turret.global_position = target_position
-#		alt_attack_cd.start()
-		
-#		var trap = load("res://scenes/constructs/BearTrap.tscn").instance()
-#		GameData.level_map.get_node("map/floor").add_child(trap) 
-#		trap.global_position = target_position
-#		alt_attack_cd.start()
-		
-#		var alt_atk_instance = alt_atk.instance()
-#		alt_atk_instance.global_position = global_position
-#		if abs(global_position.distance_to(target_position)) < 64:
-#			var enemy = nearest_active_enemy()
-#			if enemy:
-#				target_position = enemy.global_position
-#		if (abs(target_position.distance_to(global_position)) <= alt_atk_range):
-#			get_tree().get_root().add_child(alt_atk_instance)
-#			var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
-#			alt_atk_instance.direction = direction_toward_enemy
-#			alt_attack_cd.start()
 		var trap_list = get_tree().get_nodes_in_group("traps")
 		var player_traps = []
-		
+		alt_atk = load("res://scenes/skills/AutoCrossbow.tscn")
 		alt_atk_instance = alt_atk.instance()
 		## TODO: Edit values of alt_atk_instance
 #		print(GameData.current_skills)
@@ -130,6 +117,9 @@ func alt_attack(target_position):
 		alt_atk_instance.global_position = global_position
 		GameData.level_map.get_node("map/floor").add_child(alt_atk_instance)
 		GameData.apply_skill_modifiers(alt_atk_instance.name, self, "afterAdd", alt_atk_instance)
+		for buff in alt_action_buffs:
+			alt_atk_instance.buff_controller.remove_buff(buff["name"], buff["skill_level"] - 1)
+			alt_atk_instance.buff_controller.add_buff(buff["name"], buff["skill_level"], buff["subtype"])
 #		var direction_toward_enemy = alt_atk_instance.global_position.direction_to(target_position).normalized()
 #		alt_atk_instance.direction = direction_toward_enemy
 		alt_attack_cd.start()

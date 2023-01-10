@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://library/common/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://library/common/DetectBox.tscn" type="PackedScene" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://scenes/actors/player/states/Dash.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/actors/player/states/Walk.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/actors/player/states/Dead.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/skills/AutoCrossbow.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/graphics/effects/TemplateSword.png" type="Texture" id=13]
 [ext_resource path="res://scenes/actors/shared_states/Stunned.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/actors/SkillController.tscn" type="PackedScene" id=15]
@@ -558,7 +557,6 @@ radius = 6.0
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 3
 script = ExtResource( 5 )
-alt_atk = ExtResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack_Down = SubResource( 5 )
@@ -644,7 +642,6 @@ one_shot = true
 [node name="Idle" parent="StateMachine" instance=ExtResource( 6 )]
 
 [node name="Dash" parent="StateMachine" instance=ExtResource( 9 )]
-life_leech_percent = 0.1
 
 [node name="AltAct" parent="StateMachine" instance=ExtResource( 8 )]
 
@@ -661,6 +658,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="BuffController" parent="." instance=ExtResource( 16 )]
+buffs = [  ]
 
 [connection signal="on_move" from="." to="SkillController" method="_on_move"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

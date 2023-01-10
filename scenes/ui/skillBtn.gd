@@ -1,6 +1,6 @@
 extends TouchScreenButton
 
-export (String, "dash", "on_player_skill", "on_move_skill", "buff", "alt_action") var skill_type ## Tells it where it should go
+export (String, "dash", "on_player_skill", "on_move_skill", "buff", "alt_action", "alt_action_buff") var skill_type ## Tells it where it should go
 export var subtype := ""
 var skill_name:String
 export var skill_level := 0 setget set_skill_level, get_skill_level
@@ -89,7 +89,10 @@ func set_skill_level(_new_level):
 	## Add skill to player
 	if GameData && GameData.player:
 		if skill_type == "buff":
+			GameData.player.buff_controller.remove_buff(skill_name, skill_level - 1)
 			GameData.player.buff_controller.add_buff(skill_name, skill_level, subtype)
+		elif skill_type == "alt_action_buff":
+			GameData.player.add_alt_action_buff(skill_name, skill_level, subtype)
 		else:
 			GameData.player.add_skill(skill_name, skill_type)
 	if skill_level_label:

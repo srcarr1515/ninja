@@ -10,6 +10,8 @@ export var destroy_on_collision := true
 export (String, "enemy", "player") var user_type = "player"
 export (String, "enemies", "player") var target_group = "enemies"
 export (PackedScene) var boom_scene
+var follow_target
+var look_at_position_offset:=Vector2(0,0)
 var boom_instance
 var this_owner
 var spawn_node
@@ -23,6 +25,10 @@ func _ready():
 		anim_player.play(autoplay)
 
 func _physics_process(delta):
+	if follow_target:
+		look_at(follow_target.global_position + look_at_position_offset)
+		follow_target.global_position
+		direction = global_position.direction_to(follow_target.global_position)
 	var velocity = direction * speed * delta
 	move_and_collide(velocity)
 

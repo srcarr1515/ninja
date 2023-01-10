@@ -7,7 +7,13 @@ export (Array, String) var base_skill_list = [
 	"StormSigil",
 	"Blaze",
 	"Whirlwind",
-	"LifeLeech"
+	"LifeLeech",
+	"Swiftness",
+	"DualShot",
+	"ArmoredChassis",
+	"PiercingShot",
+	"HomingShot",
+	"SpeedLoader"
 ]
 var skill_list = []
 export var skill_points := 0
@@ -34,7 +40,6 @@ func _ready():
 	rootBtn.connect("skill_btn_pressed", self, "_on_skillBtn_skill_btn_pressed")
 	rootBtn.connect("info_btn_pressed", get_parent(), "_on_skillBtn_info_btn_pressed")
 
-	
 	rootBtn.tree_slot = Vector2(1,0)
 #	GameData.add_skill("alt_action", rootBtn.name, rootBtn.skill_level)
 	generate_tree(15)

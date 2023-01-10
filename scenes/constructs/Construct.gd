@@ -8,11 +8,18 @@ onready var hurtbox = $HurtBox
 onready var hitbox = $HitBox
 onready var health_bar = $HealthBar
 onready var soft_collision = $SoftCollision
+onready var attack_state = $StateMachine/Attack
+onready var buff_controller = $BuffController
+onready var attack_timer = $StateMachine/Attack/Timer
 
 export (String, "player", "enemies") var target_group = "enemies"
 export (String, "player", "enemy") var user_type = "player"
 
 var velocity
+
+## Projectile mods
+var proj_destroy_on_collision := true
+var proj_follows_target := false
 
 func _ready():
 	var user_group = {
@@ -20,7 +27,6 @@ func _ready():
 		"enemy": "enemies"
 	}
 	add_to_group(user_group[user_type])
-
 
 func _on_HurtBox_took_damage(amount, attacker):
 	if fsm.state.name == "Dead":

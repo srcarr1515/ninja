@@ -122,6 +122,5 @@ func apply_skill_modifiers(skill_name, node, when, instance):
 			subject.set(modifier["Attribute"], modifier["Value"])
 		else:
 			print("subject: {subject} not found.".format({"subject": modifier["Subject"]}))
-	
-	
+
 

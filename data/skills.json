@@ -463,7 +463,7 @@
     "Level": 0,
     "Subject": "self",
     "Attribute": "description",
-    "Value": "Steal enemy HP when using dash attack.",
+    "Value": "Steal enemy HP based on the percentage of damage dealt by dash attack.",
     "When": null,
     "Description": null
   },
@@ -490,17 +490,314 @@
     "Level": 1,
     "Subject": "this.hitbox",
     "Attribute": "life_leech_perc",
-    "Value": 5,
+    "Value": 10,
     "When": null,
-    "Description": "Steal {x}% HP per hit."
+    "Description": "Steal {x}% per hit."
   },
   {
     "Name": "LifeLeech",
     "Level": 2,
     "Subject": "this.hitbox",
     "Attribute": "life_leech_perc",
-    "Value": 50,
+    "Value": 20,
     "When": null,
-    "Description": "Steal {x}% HP per hit."
+    "Description": "Steal {x}% per hit."
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Swiftness",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Increase the speed and distance of dash attack.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 1,
+    "Subject": "this.dash_state",
+    "Attribute": "dash_speed",
+    "Value": 100,
+    "When": null,
+    "Description": "Minor increase to dash speed/distance"
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 2,
+    "Subject": "this.dash_state",
+    "Attribute": "dash_speed",
+    "Value": 300,
+    "When": null,
+    "Description": "Moderate increase to dash speed/distance"
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 3,
+    "Subject": "this.dash_state",
+    "Attribute": "dash_speed",
+    "Value": 600,
+    "When": null,
+    "Description": "Major increase to dash speed/distance"
+  },
+  {
+    "Name": "Swiftness",
+    "Level": 4,
+    "Subject": "this.dash_state",
+    "Attribute": "dash_speed",
+    "Value": 900,
+    "When": null,
+    "Description": "Extreme increase to dash speed/distance"
+  },
+  {
+    "Name": "DualShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Dual Shot",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "DualShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Turrets fire two missiles instead of one.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "DualShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "DualShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "DualShot",
+    "Level": 1,
+    "Subject": "this.attack_state",
+    "Attribute": "missile_ct",
+    "Value": 2,
+    "When": "afterAdd",
+    "Description": "Add one extra missile."
+  },
+  {
+    "Name": "ArmoredChassis",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Armored Chassis",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "ArmoredChassis",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Reinforce turret armor, increasing it's HP.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "ArmoredChassis",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "ArmoredChassis",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "ArmoredChassis",
+    "Level": 1,
+    "Subject": "this.hurtbox",
+    "Attribute": "set_max_hp()",
+    "Value": "[10]",
+    "When": "afterAdd",
+    "Description": "Increase maximum HP to 10"
+  },
+  {
+    "Name": "PiercingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Piercing Shot",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "PiercingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Projectiles pierce through enemies.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "PiercingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "PiercingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "PiercingShot",
+    "Level": 1,
+    "Subject": "this",
+    "Attribute": "proj_destroy_on_collision",
+    "Value": false,
+    "When": "afterAdd",
+    "Description": "Projectiles piece through enemies."
+  },
+  {
+    "Name": "HomingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Homing Shot",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "HomingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Projectiles seek out enemies.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "HomingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "HomingShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "HomingShot",
+    "Level": 1,
+    "Subject": "this",
+    "Attribute": "proj_follows_target",
+    "Value": true,
+    "When": "afterAdd",
+    "Description": "Projectiles seek out enemies."
+  },
+  {
+    "Name": "SpeedLoader",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Speed Loader",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "SpeedLoader",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Increase the firing rate of each turret",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "SpeedLoader",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "SpeedLoader",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "SpeedLoader",
+    "Level": 1,
+    "Subject": "this.attack_timer",
+    "Attribute": "wait_time",
+    "Value": -0.5,
+    "When": "afterAdd",
+    "Description": "Increase attack rate by 50%"
   }
 ]

@@ -1,9 +1,8 @@
 extends State
 
 export (PackedScene) var dash_skill
-export (float) var life_leech_percent = 0.0
 var dash_skill_instance
-var dash_speed = 1200
+var dash_speed = 900
 var movement_type = "dash"
 var input_dir = Vector2.ZERO
 
