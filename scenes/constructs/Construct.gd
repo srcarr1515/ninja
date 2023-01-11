@@ -11,6 +11,7 @@ onready var soft_collision = $SoftCollision
 onready var attack_state = $StateMachine/Attack
 onready var buff_controller = $BuffController
 onready var attack_timer = $StateMachine/Attack/Timer
+var projectile_scene = "res://scenes/effects/Arrow.tscn"
 
 export (String, "player", "enemies") var target_group = "enemies"
 export (String, "player", "enemy") var user_type = "player"

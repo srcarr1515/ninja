@@ -22,7 +22,7 @@ func attack():
 		exit("Idle")
 	
 	for missile in missile_ct:
-		var arrow = load("res://scenes/effects/Arrow.tscn").instance()
+		var arrow = load(this.projectile_scene).instance()
 		var user_type_hash = {
 			"player": "enemy",
 			"enemies": "player"

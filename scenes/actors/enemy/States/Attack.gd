@@ -21,7 +21,7 @@ func on_exit():
 		this.left_pivot.rotation = 0
 
 func get_cur_range():
-	if this.target:
+	if this.target && is_instance_valid(this.target):
 		return abs(this.position.distance_to(this.target.position))
 	else:
 		return 0

@@ -10,6 +10,7 @@ export var destroy_on_collision := true
 export (String, "enemy", "player") var user_type = "player"
 export (String, "enemies", "player") var target_group = "enemies"
 export (PackedScene) var boom_scene
+export (String, "on_boom_timer", "on_collision") var boom_trigger := "on_boom_timer"
 var follow_target
 var look_at_position_offset:=Vector2(0,0)
 var boom_instance
@@ -33,6 +34,8 @@ func _physics_process(delta):
 	move_and_collide(velocity)
 
 func _on_HitBox_on_hit(target, damage):
+	if boom_trigger == "on_collision":
+		boom()
 	if destroy_on_collision:
 		queue_free()
 
@@ -45,6 +48,7 @@ func boom():
 	spawn_node.add_child(boom_instance)
 
 func _on_BoomTimer_timeout():
-	boom()
-	if destroy_on_collision:
-		queue_free()
+	if boom_trigger == "on_boom_timer":
+		boom()
+		if destroy_on_collision:
+			queue_free()

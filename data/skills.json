@@ -799,5 +799,50 @@
     "Value": -0.5,
     "When": "afterAdd",
     "Description": "Increase attack rate by 50%"
+  },
+  {
+    "Name": "GalvanicShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Galvanic Shot",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "GalvanicShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "Replace current projectiles with lightning bolts",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "GalvanicShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "GalvanicShot",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "GalvanicShot",
+    "Level": 1,
+    "Subject": "this",
+    "Attribute": "projectile_scene",
+    "Value": "res://scenes/effects/GalvanicBolt.tscn",
+    "When": "beforeAdd",
+    "Description": null
   }
 ]

@@ -12,6 +12,7 @@ export var timer_autostart:= false
 onready var timer = $Timer
 
 export (String, "on_time_out_start", "on_time_out_end") var destroy_on_timeout
+export var destroy_on_animation_finished = ""
 
 ## Size/Scale Options
 export (Array, Vector2) var randomize_scale ## randomly pick from this list.
@@ -102,4 +103,8 @@ func _on_Timer_timeout():
 		call_deferred("queue_free")
 	
 	if destroy_on_timeout == "on_time_out_end":
+		call_deferred("queue_free")
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if destroy_on_animation_finished == anim_name:
 		call_deferred("queue_free")
