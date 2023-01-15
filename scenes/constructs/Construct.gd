@@ -13,6 +13,12 @@ onready var buff_controller = $BuffController
 onready var attack_timer = $StateMachine/Attack/Timer
 var projectile_scene = "res://scenes/effects/Arrow.tscn"
 
+export var tap_to_destroy := false
+export (String) var spawn_scene_on_death
+export var spawn_scene_modifier = {
+	"set_scale()": [Vector2(2,2)]
+}
+
 export (String, "player", "enemies") var target_group = "enemies"
 export (String, "player", "enemy") var user_type = "player"
 
@@ -37,6 +43,18 @@ func _on_HurtBox_took_damage(amount, attacker):
 		health_bar.set_health_bar(perc_hp)
 		fsm.change_to("Hurt")
 	else:
+		if spawn_scene_on_death:
+			var death_spawn = load(spawn_scene_on_death).instance()
+			if (spawn_scene_modifier.keys()).size() > 0:
+				for _attr in spawn_scene_modifier.keys():
+					var _val = spawn_scene_modifier[_attr]
+					if _attr[_attr.length() - 1] == ')':
+						## Is a method call...
+						var method_call = _attr.split("(")[0]
+						death_spawn.callv(method_call, _val)
+					death_spawn.set(_attr, _val)
+			death_spawn.global_position = global_position
+			get_tree().get_root().add_child(death_spawn)
 		fsm.change_to("Dead")
 
 func _physics_process(delta):
@@ -46,3 +64,10 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO
 		velocity = move_and_slide(velocity)
+
+func _on_TapArea_released():
+	if tap_to_destroy:
+		hurtbox.hp = 0
+		_on_HurtBox_took_damage(1, null)
+		
+	

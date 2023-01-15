@@ -844,5 +844,50 @@
     "Value": "res://scenes/effects/GalvanicBolt.tscn",
     "When": "beforeAdd",
     "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "display_name",
+    "Value": "Overload",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "description",
+    "Value": "When a construct is destroyed it creates an electrical explosion.",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "skill_type",
+    "Value": "alt_action_buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 0,
+    "Subject": "self",
+    "Attribute": "subtype",
+    "Value": "buff",
+    "When": null,
+    "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 1,
+    "Subject": "this",
+    "Attribute": "spawn_scene_on_death",
+    "Value": "res://scenes/effects/Overload.tscn",
+    "When": "beforeAdd",
+    "Description": null
   }
 ]

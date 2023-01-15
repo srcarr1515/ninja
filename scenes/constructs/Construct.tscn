@@ -39,6 +39,10 @@ script = ExtResource( 5 )
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
 
+[node name="TapArea" type="TouchScreenButton" parent="."]
+
+[connection signal="released" from="TapArea" to="." method="_on_TapArea_released"]
+
 [editable path="SoftCollision"]
 [editable path="HitBox"]
 [editable path="HurtBox"]

@@ -14,7 +14,8 @@ export (Array, String) var base_skill_list = [
 	"PiercingShot",
 	"HomingShot",
 	"SpeedLoader",
-	"GalvanicShot"
+	"GalvanicShot",
+	"Overload"
 ]
 var skill_list = []
 export var skill_points := 0

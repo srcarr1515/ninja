@@ -36,6 +36,12 @@ func load_json_data(filename):
 	file.open(path, file.READ)
 	return parse_json(file.get_as_text())
 
+func convert_to_vec_two(_obj):
+	if typeof(_obj) == TYPE_DICTIONARY && _obj.has("Vector2"):
+		return Vector2(_obj["x"], _obj["y"])
+	else:
+		return false
+
 func load_skill_data():
 	var data = load_json_data('skills')
 	for modifier in data:
@@ -46,7 +52,25 @@ func load_skill_data():
 		if !skill_data[skill_name].has(level):
 			skill_data[skill_name][level] = []
 		if typeof(modifier["Value"]) == TYPE_STRING && (modifier["Value"][0] == "{" || modifier["Value"][0] == "["):
+			## Detect and parse strings into ARRAYS and DICTIONARIES
 			modifier["Value"] = parse_json(str(modifier["Value"]))
+			## Dectect if obj is a Vector2
+			var VecTwo = convert_to_vec_two(modifier["Value"])
+			if VecTwo:
+				modifier["Value"] = VecTwo
+			elif typeof(modifier["Value"]) == TYPE_ARRAY:
+				for i in modifier["Value"].size():
+					var element = modifier["Value"][i]
+					var _vec_two = convert_to_vec_two(element)
+					if _vec_two:
+						modifier["Value"][i] = _vec_two
+			elif typeof(modifier["Value"]) == TYPE_DICTIONARY:
+				## Untested *should work*
+				for k in modifier["Value"].keys():
+					var _item = modifier["Value"][k]
+					var _vec_two = convert_to_vec_two(_item)
+					if _vec_two:
+						modifier["Value"][k] = _vec_two
 		skill_data[skill_name][level].push_front(modifier)
 
 func add_escapee():
