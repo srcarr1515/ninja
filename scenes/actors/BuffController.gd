@@ -23,44 +23,45 @@ func add_buff(buff_name, buff_skill_level, buff_type=null):
 		for def in buff_def:
 			if def["Attribute"] == "subtype":
 				buff_type = def["Value"]
-	var buff_data = GameData.get_skill_data(buff_name, buff_skill_level)[0]
-	buff_data["BuffType"] = buff_type
-	var subject
-	if buff_data["Subject"].find(".") != -1:
-		## Contains a '.'
-		var subject_arr = buff_data["Subject"].split(".")
-		if subject_arr[0] == "this":
-			subject = this
+	var buff_data_list = GameData.get_skill_data(buff_name, buff_skill_level)
+	for buff_data in buff_data_list:
+		buff_data["BuffType"] = buff_type
+		var subject
+		if buff_data["Subject"].find(".") != -1:
+			## Contains a '.'
+			var subject_arr = buff_data["Subject"].split(".")
+			if subject_arr[0] == "this":
+				subject = this
+				
+			subject = subject.get(subject_arr[1])
 			
-		subject = subject.get(subject_arr[1])
-		
-	elif buff_data["Subject"] == "self":
-		subject = self
-	else:
-		subject = get(buff_data["Subject"])
-	if subject:
-		if typeof(buff_data["Attribute"]) == TYPE_STRING && buff_data["Attribute"][buff_data["Attribute"].length() - 1] == ')':
-			## Is a method call...
-			var method_call = buff_data["Attribute"].split("(")[0]
-			var params = buff_data["Value"]
-			subject.callv(method_call, params)
-		elif typeof(buff_data["Value"]) == TYPE_ARRAY:
-			var new_arr = []
-			for arr_item in buff_data["Value"]:
-				if typeof(arr_item) == TYPE_STRING && arr_item.find("res://") != -1:
-					new_arr.push_front(load(arr_item))
-				else:
-					new_arr.push_front(arr_item)
-			buff_data["Value"] = new_arr
-			subject.set(buff_data["Attribute"], buff_data["Value"])
-		elif typeof(buff_data["Value"]) == TYPE_INT || typeof(buff_data["Value"]) == TYPE_REAL:
-			var cur_value = subject.get(buff_data["Attribute"])
-			print("buffing: ", buff_data["Attribute"], buff_data["Value"])
-			var new_value = buff_data["Value"] + cur_value
-			subject.set(buff_data["Attribute"], new_value)
+		elif buff_data["Subject"] == "self":
+			subject = self
 		else:
-			subject.set(buff_data["Attribute"], buff_data["Value"])
-	buffs.push_back(buff_data)
+			subject = get(buff_data["Subject"])
+		if subject:
+			if typeof(buff_data["Attribute"]) == TYPE_STRING && buff_data["Attribute"][buff_data["Attribute"].length() - 1] == ')':
+				## Is a method call...
+				var method_call = buff_data["Attribute"].split("(")[0]
+				var params = buff_data["Value"]
+				subject.callv(method_call, params)
+			elif typeof(buff_data["Value"]) == TYPE_ARRAY:
+				var new_arr = []
+				for arr_item in buff_data["Value"]:
+					if typeof(arr_item) == TYPE_STRING && arr_item.find("res://") != -1:
+						new_arr.push_front(load(arr_item))
+					else:
+						new_arr.push_front(arr_item)
+				buff_data["Value"] = new_arr
+				subject.set(buff_data["Attribute"], buff_data["Value"])
+			elif typeof(buff_data["Value"]) == TYPE_INT || typeof(buff_data["Value"]) == TYPE_REAL:
+				var cur_value = subject.get(buff_data["Attribute"])
+				print("buffing: ", buff_data["Attribute"], buff_data["Value"])
+				var new_value = buff_data["Value"] + cur_value
+				subject.set(buff_data["Attribute"], new_value)
+			else:
+				subject.set(buff_data["Attribute"], buff_data["Value"])
+		buffs.push_back(buff_data)
 #	print("buffs list: ", buffs)
 
 func remove_buff(buff_name:String, buff_level:int):

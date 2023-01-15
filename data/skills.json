@@ -889,5 +889,14 @@
     "Value": "res://scenes/effects/Overload.tscn",
     "When": "beforeAdd",
     "Description": null
+  },
+  {
+    "Name": "Overload",
+    "Level": 1,
+    "Subject": "this",
+    "Attribute": "spawn_scene_modifier",
+    "Value": "{\n  \"set_scale()\": [\n    {\"Vector2\": {\"x\": 2, \"y\": 2}}\n  ]\n}",
+    "When": "beforeAdd",
+    "Description": null
   }
 ]

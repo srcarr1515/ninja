@@ -2,21 +2,27 @@ extends Node2D
 
 export (String) var rootSkillBtn
 
+#export (Array, String) var base_skill_list = [
+#	"BladeSentry",
+#	"StormSigil",
+#	"Blaze",
+#	"Whirlwind",
+#	"LifeLeech",
+#	"Swiftness",
+#	"DualShot",
+#	"ArmoredChassis",
+#	"PiercingShot",
+#	"HomingShot",
+#	"SpeedLoader",
+#	"GalvanicShot",
+#	"Overload"
+#]
+
 export (Array, String) var base_skill_list = [
-	"BladeSentry",
-	"StormSigil",
-	"Blaze",
-	"Whirlwind",
-	"LifeLeech",
-	"Swiftness",
-	"DualShot",
-	"ArmoredChassis",
-	"PiercingShot",
-	"HomingShot",
-	"SpeedLoader",
-	"GalvanicShot",
 	"Overload"
 ]
+
+
 var skill_list = []
 export var skill_points := 0
 export (PackedScene) var skill_branch_scene

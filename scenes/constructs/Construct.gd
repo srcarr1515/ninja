@@ -15,9 +15,7 @@ var projectile_scene = "res://scenes/effects/Arrow.tscn"
 
 export var tap_to_destroy := false
 export (String) var spawn_scene_on_death
-export var spawn_scene_modifier = {
-	"set_scale()": [Vector2(2,2)]
-}
+export var spawn_scene_modifier = {}
 
 export (String, "player", "enemies") var target_group = "enemies"
 export (String, "player", "enemy") var user_type = "player"
@@ -66,6 +64,7 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity)
 
 func _on_TapArea_released():
+	print("spawn scene mod: ", spawn_scene_modifier)
 	if tap_to_destroy:
 		hurtbox.hp = 0
 		_on_HurtBox_took_damage(1, null)
